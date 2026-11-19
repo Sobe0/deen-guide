@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deen Guide</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f5f7f3;color:#20352c;font-family:Arial,sans-serif}
+header{background:#173e32;color:white;padding:28px 20px;text-align:center}
+header h1{margin:0;font-size:30px}
+header p{color:#d6e6dc;margin-bottom:0}
+main{max-width:700px;margin:25px auto;padding:0 16px}
+.search{width:100%;padding:16px;border:1px solid #ccd8cf;border-radius:12px;font-size:16px}
+h2{font-size:20px;margin-top:28px}
+.card{background:white;padding:18px;margin:12px 0;border-radius:14px;border:1px solid #e1e9e2}
+.card h3{margin:0 0 8px;color:#245c46}
+.card p{line-height:1.6;margin:8px 0}
+.ref{font-size:13px;color:#64796d}
+.tag{display:inline-block;background:#e6f1e9;color:#245c46;padding:5px 9px;border-radius:20px;font-size:12px}
+footer{text-align:center;color:#718077;padding:30px 15px;font-size:13px}
+button{background:#245c46;color:white;border:0;padding:10px 14px;border-radius:9px;cursor:pointer}
+</style>
+</head>
+<body>
+<header>
+<h1>☪ Deen Guide</h1>
+<p>Learn Islam through the Quran and authentic Sunnah.</p>
+</header>
+
+<main>
+<h2>Ask about Islam</h2>
+<input class="search" id="search" placeholder="Search halal, haram, prayer..." oninput="searchAnswers()">
+
+<div id="answers">
+<h2>Popular topics</h2>
+
+<div class="card" data-words="pork pig swine haram food">
+<span class="tag">Food</span>
+<h3>Is eating pork haram?</h3>
+<p>Yes. The Quran prohibits eating pork, except in a situation of necessity when someone has no other option to survive.</p>
+<p class="ref">Evidence: Quran 2:173 and 5:3.</p>
+</div>
+
+<div class="card" data-words="alcohol wine beer drinking haram">
+<span class="tag">Lifestyle</span>
+<h3>Is drinking alcohol haram?</h3>
+<p>Yes. The Quran tells believers to avoid intoxicants.</p>
+<p class="ref">Evidence: Quran 5:90.</p>
+</div>
+
+<div class="card" data-words="prayer salah namaz">
+<span class="tag">Worship</span>
+<h3>Is prayer important in Islam?</h3>
+<p>Yes. Establishing prayer is a central obligation in Islam.</p>
+<p class="ref">Evidence: Quran 2:43.</p>
+</div>
+
+<div class="card" data-words="lying lie honesty">
+<span class="tag">Character</span>
+<h3>Is lying allowed?</h3>
+<p>Islam teaches truthfulness and warns against false speech. Specific situations can have different rulings.</p>
+<p class="ref">Evidence: Quran 9:119.</p>
+</div>
+
+<div class="card" data-words="interest riba bank loan">
+<span class="tag">Money</span>
+<h3>What is riba?</h3>
+<p>Riba refers to prohibited forms of increase or interest in financial dealings. Specific modern financial products need individual scholarly review.</p>
+<p class="ref">Evidence: Quran 2:275.</p>
+</div>
+</div>
+
+<p id="noResults" style="display:none">No matching topic found. This app does not have a verified answer yet.</p>
+
+<div class="card">
+<h3>Important</h3>
+<p>This is an educational starter app, not a qualified fatwa service. Ask a trusted Sunni scholar about personal or disputed rulings. Always check the original evidence and its context.</p>
+</div>
+</main>
+
+<footer>Deen Guide · Learn with knowledge and sincerity</footer>
+
+<script>
+function searchAnswers(){
+ const q=document.getElementById("search").value.toLowerCase().trim();
+ const cards=document.querySelectorAll("#answers .card");
+ let shown=0;
+ cards.forEach(card=>{
+  const match=(card.innerText+" "+card.dataset.words).toLowerCase().includes(q);
+  card.style.display=match?"block":"none";
+  if(match) shown++;
+ });
+ document.getElementById("noResults").style.display=shown?"none":"block";
+}
+</script>
+</body>
+</html>
