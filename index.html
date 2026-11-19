@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,632 +6,435 @@
 <meta name="theme-color" content="#101b17">
 <title>Deen Guide</title>
 <style>
-:root {
-  --bg:#101b17;
-  --panel:#192821;
-  --panel2:#22352b;
-  --green:#a8d5b5;
-  --text:#f3f5ef;
-  --muted:#b2c1b6;
-  --line:#35483d;
-}
-* { box-sizing:border-box; }
-body {
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Arial,sans-serif;
-}
-header {
-  padding:24px 18px 18px;
-  border-bottom:1px solid var(--line);
-}
-.brand {
-  color:var(--green);
-  font-size:13px;
-  letter-spacing:3px;
-  font-weight:bold;
-}
-h1 { margin:8px 0; font-size:30px; }
-header p { color:var(--muted); margin:0; line-height:1.5; }
-main { max-width:850px; margin:auto; padding:18px; }
-.searchbox {
-  display:flex;
-  gap:8px;
-  margin-bottom:14px;
-}
-input {
-  width:100%;
-  min-width:0;
-  padding:15px;
-  border:1px solid var(--line);
-  border-radius:13px;
-  background:var(--panel);
-  color:white;
-  font-size:16px;
-}
-button {
-  border:0;
-  border-radius:12px;
-  padding:12px 16px;
-  background:var(--green);
-  color:#102017;
-  font-weight:bold;
-  cursor:pointer;
-}
-.categories {
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
-  padding:4px 0 15px;
-}
-.categories button {
-  white-space:nowrap;
-  background:var(--panel2);
-  color:var(--text);
-}
-.categories button.active {
-  background:var(--green);
-  color:#102017;
-}
-.chat {
-  min-height:260px;
-  display:flex;
-  flex-direction:column;
-  gap:13px;
-}
-.message {
-  padding:15px;
-  border-radius:15px;
-  line-height:1.6;
-  max-width:95%;
-  white-space:pre-wrap;
-}
-.user {
-  align-self:flex-end;
-  background:#355344;
-}
-.answer {
-  align-self:flex-start;
-  background:var(--panel);
-  border:1px solid var(--line);
-}
-.answer h3 { margin:0 0 8px; color:var(--green); }
-.reference {
-  display:block;
-  margin-top:12px;
-  padding-top:10px;
-  border-top:1px solid var(--line);
-  color:var(--green);
-  font-size:13px;
-}
-.results-title {
-  color:var(--muted);
-  font-size:13px;
-  margin:18px 0 10px;
-}
-.card {
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:13px;
-  padding:14px;
-  margin-bottom:9px;
-  cursor:pointer;
-}
-.card h3 { margin:0 0 6px; font-size:16px; }
-.card p { color:var(--muted); margin:0; font-size:13px; }
-.card:hover { border-color:var(--green); }
-.small { color:var(--muted); font-size:12px; line-height:1.5; }
-footer {
-  border-top:1px solid var(--line);
-  margin-top:30px;
-  padding:20px 18px;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.6;
-  text-align:center;
-}
-.hidden { display:none; }
+:root{--bg:#101b17;--panel:#192821;--panel2:#22352b;--green:#a8d5b5;--text:#f3f5ef;--muted:#b2c1b6;--line:#35483d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
+header{padding:24px 18px 18px;border-bottom:1px solid var(--line)}.brand{color:var(--green);font-size:13px;letter-spacing:3px;font-weight:bold}
+h1{margin:8px 0;font-size:30px}header p{color:var(--muted);margin:0;line-height:1.5}
+main{max-width:850px;margin:auto;padding:18px}.searchbox{display:flex;gap:8px;margin-bottom:14px}
+input{width:100%;min-width:0;padding:15px;border:1px solid var(--line);border-radius:13px;background:var(--panel);color:white;font-size:16px}
+button{border:0;border-radius:12px;padding:12px 16px;background:var(--green);color:#102017;font-weight:bold;cursor:pointer}
+.categories{display:flex;gap:8px;overflow-x:auto;padding:4px 0 15px}.categories button{white-space:nowrap;background:var(--panel2);color:var(--text)}.categories button.active{background:var(--green);color:#102017}
+.chat{min-height:180px;display:flex;flex-direction:column;gap:13px}.message{padding:15px;border-radius:15px;line-height:1.6;max-width:95%;white-space:pre-wrap}
+.user{align-self:flex-end;background:#355344}.answer{align-self:flex-start;background:var(--panel);border:1px solid var(--line);width:100%}
+.answer h3{margin:0 0 8px;color:var(--green)}.reference{display:block;margin-top:12px;padding-top:10px;border-top:1px solid var(--line);color:var(--green);font-size:13px}
+.results-title{color:var(--muted);font-size:13px;margin:18px 0 10px}.card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:14px;margin-bottom:9px;cursor:pointer}
+.card h3{margin:0 0 6px;font-size:16px}.card p{color:var(--muted);margin:0;font-size:13px}.card:hover{border-color:var(--green)}
+.small{color:var(--muted);font-size:12px;line-height:1.5}footer{border-top:1px solid var(--line);margin-top:30px;padding:20px 18px;color:var(--muted);font-size:12px;line-height:1.6;text-align:center}
 </style>
 </head>
 <body>
-
-<header>
-  <div class="brand">DEEN GUIDE</div>
-  <h1>Learn about Islam.</h1>
-  <p>Ask a question, explore Islamic topics, and learn from the Quran and authentic Sunnah.</p>
-</header>
-
+<header><div class="brand">DEEN GUIDE</div><h1>Learn about Islam.</h1>
+<p>Explore 300 introductory questions about Islam, based on the Quran and authentic Sunnah.</p></header>
 <main>
-  <div class="searchbox">
-    <input id="question" type="search" placeholder="Ask an Islamic question..." autocomplete="off">
-    <button onclick="askQuestion()">Ask</button>
-  </div>
-
-  <div class="categories" id="categories"></div>
-
-  <div class="chat" id="chat">
-    <div class="message answer">
-      <h3>Assalamu Alaikum!</h3>
-      Welcome to Deen Guide. Ask a question about Islam or choose a topic below.
-    </div>
-  </div>
-
-  <div class="results-title" id="resultsTitle">POPULAR QUESTIONS</div>
-  <div id="results"></div>
+<div class="searchbox"><input id="question" type="search" placeholder="Ask an Islamic question..." autocomplete="off"><button id="askButton">Ask</button></div>
+<div class="categories" id="categories"></div>
+<div class="chat" id="chat"><div class="message answer"><h3>Assalamu Alaikum!</h3>Welcome to Deen Guide. Ask a question about Islam or choose a topic below.</div></div>
+<div class="results-title" id="resultsTitle">300 QUESTIONS</div><div id="results"></div>
 </main>
-
-<footer>
-  Deen Guide is an educational resource based on Sunni Islam.
-  Answers are simplified and are not personal fatwas. Some matters have
-  differences between the four Sunni schools of law. Consult a qualified
-  scholar for personal or complicated questions.
-</footer>
-
+<footer>Deen Guide is an educational resource based on Sunni Islam. Answers are short introductions, not personal fatwas. Some matters differ between the four Sunni schools of law. Hadith numbering can vary by edition. Ask a qualified scholar about personal, disputed, or complicated matters.</footer>
 <script>
-const questions = [
-{
-category:"Belief",
-q:"What are the six pillars of Iman?",
-keywords:"faith belief iman angels books messengers day judgment destiny",
-a:"The six pillars of Iman are belief in Allah, His angels, His revealed books, His messengers, the Last Day, and divine decree, both its good and what may seem bad to us.",
-ref:"Sahih Muslim 8a, Hadith of Jibril."
-},
-{
-category:"Belief",
-q:"What is Tawheed?",
-keywords:"oneness monotheism worship Allah",
-a:"Tawheed means believing that Allah is One, with no partner. Muslims worship Allah alone and do not associate partners with Him.",
-ref:"Quran 112:1-4, Quran 2:163."
-},
-{
-category:"Belief",
-q:"Who is Allah?",
-keywords:"God creator lord",
-a:"Allah is the one true God, the Creator and Sustainer of everything. He has no partner, child, or equal.",
-ref:"Quran 2:255, Quran 112:1-4."
-},
-{
-category:"Belief",
-q:"What is Shirk?",
-keywords:"partners idolatry worship",
-a:"Shirk means associating partners with Allah in what belongs exclusively to Him, such as worship. The Quran strongly warns against it.",
-ref:"Quran 4:48, Quran 31:13."
-},
-{
-category:"Belief",
-q:"Who was Prophet Muhammad?",
-keywords:"messenger prophet last final",
-a:"Prophet Muhammad, peace be upon him, was Allah's messenger and the final prophet. Muslims follow the guidance he brought.",
-ref:"Quran 33:40, Quran 21:107."
-},
-{
-category:"Belief",
-q:"What is the Quran?",
-keywords:"holy book revelation scripture",
-a:"The Quran is the revelation from Allah to Prophet Muhammad through Angel Jibril. Muslims regard it as their primary source of guidance.",
-ref:"Quran 2:2, Quran 17:9."
-},
-{
-category:"Belief",
-q:"What is the Sunnah?",
-keywords:"hadith teachings prophet example",
-a:"The Sunnah refers to the teachings, actions, approvals, and example of Prophet Muhammad. Hadith reports help preserve knowledge of the Sunnah.",
-ref:"Quran 33:21, Quran 59:7."
-},
-{
-category:"Prayer",
-q:"How many daily prayers are obligatory?",
-keywords:"salah salat five prayers",
-a:"There are five obligatory daily prayers: Fajr, Dhuhr, Asr, Maghrib, and Isha.",
-ref:"Quran 17:78, Sahih al-Bukhari 528."
-},
-{
-category:"Prayer",
-q:"How many rakahs are in Fajr?",
-keywords:"morning prayer units",
-a:"The obligatory Fajr prayer consists of two rakahs. There are also two Sunnah rakahs before the obligatory prayer.",
-ref:"Sahih al-Bukhari 1180, Sahih Muslim 725."
-},
-{
-category:"Prayer",
-q:"What happens if I miss Fajr?",
-keywords:"oversleep forget missed salah make up qada",
-a:"If you sleep through Fajr or genuinely forget it, pray it when you remember or wake up. Do not deliberately delay an obligatory prayer.",
-ref:"Sahih al-Bukhari 597, Sahih Muslim 684."
-},
-{
-category:"Prayer",
-q:"What is Wudu?",
-keywords:"ablution washing purification before prayer",
-a:"Wudu is the purification performed before prayer. The Quran describes washing the face and arms, wiping the head, and washing the feet.",
-ref:"Quran 5:6."
-},
-{
-category:"Prayer",
-q:"What breaks Wudu?",
-keywords:"toilet passing wind sleep invalidation",
-a:"Using the toilet and passing wind invalidate Wudu. Other situations have detailed rulings and some differences between Sunni schools. Deep sleep is also discussed in the Hadith and fiqh.",
-ref:"Quran 5:6, Sahih Muslim 362."
-},
-{
-category:"Prayer",
-q:"Can I pray without knowing Arabic?",
-keywords:"language beginner salah recitation",
-a:"Muslims learn the required Quranic recitation for prayer. If you are a beginner, learn step by step and ask a qualified teacher what to do while learning.",
-ref:"Quran 73:20."
-},
-{
-category:"Prayer",
-q:"What direction do Muslims pray?",
-keywords:"qibla kaaba direction",
-a:"Muslims face the Kaaba in Makkah when performing obligatory prayer, according to their ability.",
-ref:"Quran 2:144."
-},
-{
-category:"Fasting",
-q:"What is Ramadan?",
-keywords:"month fasting ramadan",
-a:"Ramadan is the ninth month of the Islamic lunar calendar. Muslims who are obligated to fast abstain from food, drink, and other things that invalidate the fast from dawn until sunset.",
-ref:"Quran 2:183-185."
-},
-{
-category:"Fasting",
-q:"Who must fast Ramadan?",
-keywords:"obligation fasting adults health",
-a:"Fasting Ramadan is obligatory for eligible Muslims. Islamic law recognises exemptions, including illness and travel, with further details depending on the situation.",
-ref:"Quran 2:183-185."
-},
-{
-category:"Fasting",
-q:"Can I eat before Fajr?",
-keywords:"suhoor pre dawn meal",
-a:"Yes. Muslims may eat and drink before true dawn. The pre-dawn meal is called suhoor.",
-ref:"Quran 2:187, Sahih al-Bukhari 1923."
-},
-{
-category:"Fasting",
-q:"What is Iftar?",
-keywords:"break fast sunset meal",
-a:"Iftar is the meal used to break the fast at sunset. Muslims should not intentionally delay breaking the fast after sunset.",
-ref:"Sahih al-Bukhari 1957, Sahih Muslim 1098."
-},
-{
-category:"Fasting",
-q:"Can I fast while travelling?",
-keywords:"journey travel exemption",
-a:"The Quran allows a traveller to postpone fasting and make up the missed days later. The details of what counts as travel and the best choice in a particular situation can require scholarly guidance.",
-ref:"Quran 2:185."
-},
-{
-category:"Food",
-q:"What foods are Haram?",
-keywords:"forbidden food pork blood carrion alcohol",
-a:"The Quran specifically prohibits carrion, blood, pork, and animals dedicated to other than Allah, with further details and exceptions explained in Islamic law.",
-ref:"Quran 2:173, Quran 5:3."
-},
-{
-category:"Food",
-q:"Is pork Haram?",
-keywords:"pig bacon ham pork meat",
-a:"Yes. Pork is prohibited for Muslims.",
-ref:"Quran 2:173, Quran 5:3."
-},
-{
-category:"Food",
-q:"Is alcohol Haram?",
-keywords:"wine beer intoxicants drinking",
-a:"Intoxicants are prohibited in Islam. Muslims are instructed to avoid them.",
-ref:"Quran 5:90-91, Sahih Muslim 2003."
-},
-{
-category:"Food",
-q:"What does Halal mean?",
-keywords:"permissible allowed lawful",
-a:"Halal means permitted or lawful under Islamic teachings. Food must meet the relevant Islamic requirements to be considered halal.",
-ref:"Quran 2:168, Quran 5:88."
-},
-{
-category:"Money",
-q:"What is Riba?",
-keywords:"interest usury loans banking",
-a:"Riba is prohibited in Islam. Its application to modern financial products can involve detailed scholarly discussion, so ask a qualified scholar about a specific product.",
-ref:"Quran 2:275-279."
-},
-{
-category:"Money",
-q:"What is Zakat?",
-keywords:"charity wealth obligatory giving",
-a:"Zakat is an obligatory form of charity for Muslims who meet its conditions. Its calculation depends on the type of wealth and applicable rules.",
-ref:"Quran 9:60, Quran 2:43."
-},
-{
-category:"Money",
-q:"What is Sadaqah?",
-keywords:"voluntary charity donation helping",
-a:"Sadaqah is voluntary charity. It can include giving money, helping someone, and other acts of kindness.",
-ref:"Quran 2:261, Sahih Muslim 1009."
-},
-{
-category:"Character",
-q:"Why is honesty important in Islam?",
-keywords:"truth lying truthful",
-a:"Islam teaches Muslims to speak truthfully and avoid lying. Honesty is an important part of good character.",
-ref:"Quran 9:119, Sahih al-Bukhari 6094."
-},
-{
-category:"Character",
-q:"What is backbiting?",
-keywords:"gheebah gossip talking behind someone",
-a:"Backbiting means mentioning something about another person that they would dislike, even if it is true. Islam warns strongly against it.",
-ref:"Quran 49:12, Sahih Muslim 2589."
-},
-{
-category:"Character",
-q:"How should Muslims treat their parents?",
-keywords:"mother father respect kindness family",
-a:"The Quran commands kindness towards parents and teaches Muslims to speak to them respectfully.",
-ref:"Quran 17:23-24, Quran 31:14."
-},
-{
-category:"Character",
-q:"Is forgiveness encouraged in Islam?",
-keywords:"forgive pardon anger",
-a:"Yes. The Quran praises those who control their anger and forgive others. Forgiveness does not mean accepting ongoing harm.",
-ref:"Quran 3:134, Quran 42:40."
-},
-{
-category:"Everyday",
-q:"What should I say before eating?",
-keywords:"dua bismillah food meal",
-a:"A Muslim should mention Allah's name before eating by saying Bismillah. If they forget, a reported supplication is to mention Allah's name when they remember.",
-ref:"Sahih al-Bukhari 5376, Sunan Abi Dawud 3767."
-},
-{
-category:"Everyday",
-q:"What should I say when greeting another Muslim?",
-keywords:"salam greeting assalamu alaikum",
-a:"A common Islamic greeting is Assalamu Alaikum, meaning peace be upon you. The reply is Wa Alaikum Assalam, meaning and upon you be peace.",
-ref:"Quran 4:86."
-},
-{
-category:"Everyday",
-q:"What is Dua?",
-keywords:"supplication asking Allah prayer",
-a:"Dua is calling upon Allah and asking Him for help, guidance, forgiveness, or blessings. Muslims can make dua in their own language.",
-ref:"Quran 2:186, Quran 40:60."
-},
-{
-category:"Everyday",
-q:"What is Dhikr?",
-keywords:"remembrance remembering Allah tasbih",
-a:"Dhikr means remembering Allah through words and acts of worship, such as saying SubhanAllah, Alhamdulillah, and Allahu Akbar.",
-ref:"Quran 13:28, Quran 33:41."
-},
-{
-category:"Family",
-q:"What does Islam teach about marriage?",
-keywords:"nikah husband wife spouse",
-a:"Marriage in Islam is a serious commitment built on kindness, responsibility, and mutual rights. Specific rulings depend on the circumstances.",
-ref:"Quran 30:21, Quran 4:19."
-},
-{
-category:"Family",
-q:"What does Islam teach about kindness to neighbours?",
-keywords:"neighbor neighbour community",
-a:"The Quran commands good treatment of neighbours, relatives, orphans, and others. Good manners towards neighbours are an important Islamic teaching.",
-ref:"Quran 4:36, Sahih al-Bukhari 6018."
-},
-{
-category:"Quran",
-q:"Which is the first chapter of the Quran?",
-keywords:"surah opening al fatihah",
-a:"The first chapter of the Quran is Surah Al-Fatihah. It has seven verses and is recited in every rakah of the prayer.",
-ref:"Quran 1:1-7, Sahih al-Bukhari 756."
-},
-{
-category:"Quran",
-q:"Which is the longest chapter of the Quran?",
-keywords:"surah longest baqarah",
-a:"Surah Al-Baqarah is the longest chapter of the Quran. It is chapter 2.",
-ref:"Quran, Surah 2."
-},
-{
-category:"Quran",
-q:"What is Ayat al-Kursi?",
-keywords:"throne verse 255 baqarah",
-a:"Ayat al-Kursi is verse 255 of Surah Al-Baqarah. It describes Allah's greatness, knowledge, and power.",
-ref:"Quran 2:255."
-},
-{
-category:"Quran",
-q:"What is Laylat al-Qadr?",
-keywords:"night power decree ramadan",
-a:"Laylat al-Qadr is the Night of Decree. The Quran says it is better than a thousand months.",
-ref:"Quran 97:1-5."
-},
-{
-category:"Quran",
-q:"Why was the Quran revealed?",
-keywords:"purpose guidance revelation",
-a:"The Quran was revealed as guidance for humanity. It calls people to worship Allah and live according to His guidance.",
-ref:"Quran 2:2, Quran 17:9."
-},
-{
-category:"Belief",
-q:"What is the Day of Judgment?",
-keywords:"afterlife resurrection akhirah",
-a:"Muslims believe that people will be resurrected and held accountable by Allah for their deeds. Allah is perfectly just.",
-ref:"Quran 99:6-8, Quran 101:6-11."
-},
-{
-category:"Prayer",
-q:"What is Friday prayer?",
-keywords:"jumuah jummah friday salah",
-a:"Jumu'ah is the congregational Friday prayer. The Quran instructs believers to respond to the call for prayer and leave trade during it.",
-ref:"Quran 62:9-10."
-},
-{
-category:"Fasting",
-q:"What is the Day of Arafah?",
-keywords:"arafah dhul hijjah fasting",
-a:"The Day of Arafah is the ninth day of Dhul-Hijjah. Fasting it is highly recommended for Muslims who are not performing Hajj, according to the Sunnah.",
-ref:"Sahih Muslim 1162."
-},
-{
-category:"Money",
-q:"Is cheating in business allowed?",
-keywords:"fraud dishonesty trade selling",
-a:"No. Islam prohibits cheating and dishonesty in trade. Sellers should be truthful about what they sell.",
-ref:"Sahih Muslim 102, Sahih al-Bukhari 2079."
-},
-{
-category:"Character",
-q:"What is patience in Islam?",
-keywords:"sabr hardship difficulty",
-a:"Sabr means patience and steadfastness. The Quran teaches believers to seek help through patience and prayer.",
-ref:"Quran 2:153, Quran 39:10."
+const raw = {
+"Belief": [
+["What are the six pillars of Iman?","They are belief in Allah, His angels, His revealed books, His messengers, the Last Day, and divine decree.","Sahih Muslim 8a, Hadith of Jibril."],
+["What is Tawheed?","Tawheed means affirming that Allah is One and worship belongs to Him alone.","Quran 112:1-4; 2:163."],
+["Who is Allah?","Allah is the one true God, Creator and Sustainer of everything. Nothing is equal to Him.","Quran 2:255; 112:1-4."],
+["What is Shirk?","Shirk is associating partners with Allah in what belongs exclusively to Him, especially worship.","Quran 4:48; 31:13."],
+["Who was Prophet Muhammad?","Muhammad, peace be upon him, was Allah's messenger and the final prophet.","Quran 33:40; 21:107."],
+["What is Iman?","Iman means faith. The Hadith of Jibril explains its six pillars.","Sahih Muslim 8a."],
+["What does it mean to believe in angels?","Muslims believe angels are created by Allah and obey His commands. Jibril brought revelation to the prophets.","Quran 2:97-98; 66:6."],
+["What are the revealed books?","Muslims believe Allah revealed scriptures, including the Tawrat, Zabur, Injil, and the Quran. The Quran is the final revelation.","Quran 3:3-4; 5:48."],
+["What does belief in prophets mean?","Muslims believe Allah sent messengers to guide people. They respect all prophets and do not reject any of them.","Quran 2:285; 4:163-165."],
+["What is belief in the Last Day?","It means believing that life does not end with death and that people will be resurrected and judged by Allah.","Quran 99:6-8; 22:7."],
+["What is Qadr?","Qadr is belief in Allah's knowledge, will, and decree. People remain responsible for their choices.","Quran 54:49; Sahih Muslim 8a."],
+["Can Muslims ask Allah directly?","Yes. Muslims can make dua directly to Allah, asking Him for help, forgiveness, and guidance.","Quran 2:186; 40:60."],
+["Does Allah know what is hidden?","Yes. The Quran teaches that Allah knows what is seen and unseen.","Quran 6:59; 2:33."],
+["Does Allah forgive sins?","Allah invites people to repent and never despair of His mercy. Sincere repentance is important.","Quran 39:53; 66:8."],
+["What is Taqwa?","Taqwa means being mindful of Allah and trying to obey Him while avoiding what He has forbidden.","Quran 2:197; 49:13."],
+["What is Nifaq?","Nifaq means hypocrisy. The Quran warns against pretending to believe while hiding disbelief or acting dishonestly.","Quran 2:8-10; 4:142."],
+["What is the meaning of Islam?","Islam means submission to Allah. A Muslim seeks to worship and obey Him.","Quran 3:19; 3:85."],
+["What makes someone a Muslim?","A person enters Islam by sincerely bearing witness that none has the right to be worshipped except Allah and Muhammad is His messenger.","Sahih al-Bukhari 8; Sahih Muslim 16."],
+["Do Muslims believe in Jesus?","Yes. Muslims believe Isa, Jesus, peace be upon him, is a great messenger of Allah and the Messiah, but not God.","Quran 3:45-51; 5:72-75."],
+["Do Muslims believe in Adam?","Yes. Adam, peace be upon him, was the first human and a prophet.","Quran 2:30-39."],
+["What is the purpose of life in Islam?","The Quran teaches that humans and jinn were created to worship Allah. Worship includes living by His guidance.","Quran 51:56."],
+["Can faith increase and decrease?","The Quran describes faith increasing when its verses are recited. Scholars explain the relationship between faith, belief, and actions in detail.","Quran 8:2; 48:4."],
+["What is the difference between Islam and Iman?","In the Hadith of Jibril, Islam is explained through outward acts and Iman through the six articles of faith.","Sahih Muslim 8a."],
+["Is intention important in Islam?","Yes. Deeds are judged by intentions, so a Muslim should seek Allah's pleasure when doing good.","Sahih al-Bukhari 1; Sahih Muslim 1907."],
+["Can a Muslim make mistakes?","Yes. Humans make mistakes. Islam teaches people to seek forgiveness, correct wrongs, and return to Allah.","Quran 3:135; Sahih Muslim 2749."]
+],
+"Quran": [
+["What is the Quran?","The Quran is Allah's revelation sent to Prophet Muhammad through Angel Jibril. It is the primary source of Islamic guidance.","Quran 2:2; 17:9."],
+["How many surahs are in the Quran?","The Quran contains 114 surahs.","Quran, complete text."],
+["Which is the first surah?","Surah Al-Fatihah is the opening chapter of the Quran and is recited in every rakah of prayer.","Quran 1:1-7; Sahih al-Bukhari 756."],
+["Which is the longest surah?","Surah Al-Baqarah, chapter 2, is the longest surah.","Quran, Surah 2."],
+["Which is the shortest surah?","Surah Al-Kawthar, chapter 108, is the shortest by number of verses, with three verses.","Quran 108:1-3."],
+["What is Ayat al-Kursi?","Ayat al-Kursi is verse 255 of Surah Al-Baqarah. It describes Allah's greatness, knowledge, and power.","Quran 2:255."],
+["What is Surah Al-Ikhlas about?","It teaches the absolute oneness of Allah and that nothing is comparable to Him.","Quran 112:1-4."],
+["What is Laylat al-Qadr?","It is the Night of Decree in Ramadan. The Quran says it is better than a thousand months.","Quran 97:1-5."],
+["Why was the Quran revealed?","It was revealed as guidance, a reminder, and a criterion between right and wrong.","Quran 2:2; 25:1."],
+["What language was the Quran revealed in?","The Quran was revealed in clear Arabic. Translations explain its meanings but are not the Arabic Quran itself.","Quran 12:2; 43:3."],
+["Can I read a translation of the Quran?","Yes. Reading a reliable translation can help you understand the message. Translations are interpretations of the meanings.","Quran 47:24."],
+["How should I treat the Quran?","Treat the Quran with respect, read it carefully, and try to understand and follow its guidance.","Quran 38:29; 4:82."],
+["What is a surah?","A surah is a chapter of the Quran. The Quran has 114 surahs.","Quran, complete text."],
+["What is an ayah?","An ayah is a verse or sign. The Quran is made up of verses grouped into surahs.","Quran 2:252."],
+["What is Tafsir?","Tafsir is explanation of the Quran. Reliable tafsir uses the Quran, Sunnah, and explanations of early Muslim scholars.","Quran 16:44."],
+["What is Tajwid?","Tajwid is the discipline of reciting the Quran with correct pronunciation and recitation rules.","Quran 73:4."],
+["Should I memorise the Quran?","Memorising the Quran is a virtuous act. Start with manageable portions and learn correct pronunciation.","Quran 54:17."],
+["What is the last surah in the Quran?","Surah An-Nas, chapter 114, is the final surah in the standard arrangement of the Quran.","Quran 114:1-6."],
+["What are Al-Mu'awwidhatayn?","They are Surah Al-Falaq and Surah An-Nas, which Muslims recite seeking Allah's protection.","Quran 113 and 114; Sahih Muslim 814."],
+["What is the first revelation?","The first revealed verses are the opening verses of Surah Al-Alaq, beginning with the command to read.","Quran 96:1-5; Sahih al-Bukhari 3."],
+["Was the Quran revealed all at once?","The Quran was sent down to the Prophet over a period of about 23 years.","Quran 17:106; 25:32."],
+["What does the Quran say about knowledge?","The Quran encourages reflection and teaches believers to ask Allah to increase them in knowledge.","Quran 20:114; 39:9."],
+["Can I listen to Quran recitation?","Yes. Listening attentively to Quran recitation is encouraged.","Quran 7:204."],
+["What is the meaning of Bismillah?","Bismillah means 'In the name of Allah'. Muslims say it before many good actions.","Quran 1:1; 11:41."],
+["What is the meaning of Alhamdulillah?","Alhamdulillah means 'All praise belongs to Allah'. It expresses gratitude and praise.","Quran 1:2; 14:39."]
+],
+"Prayer": [
+["How many daily prayers are obligatory?","There are five obligatory daily prayers: Fajr, Dhuhr, Asr, Maghrib, and Isha.","Quran 17:78; Sahih al-Bukhari 528."],
+["How many rakahs are in Fajr?","Fajr has two obligatory rakahs. Two Sunnah rakahs are also prayed before it.","Sahih al-Bukhari 1180; Sahih Muslim 725."],
+["How many rakahs are in Dhuhr?","Dhuhr has four obligatory rakahs.","Sahih Muslim  hadiths describing the Prophet's prayers; consult a prayer guide for details."],
+["How many rakahs are in Asr?","Asr has four obligatory rakahs.","Sahih al-Bukhari 350; prayer descriptions in the Sunnah."],
+["How many rakahs are in Maghrib?","Maghrib has three obligatory rakahs.","Sahih al-Bukhari 350; prayer descriptions in the Sunnah."],
+["How many rakahs are in Isha?","Isha has four obligatory rakahs.","Sahih al-Bukhari 350; prayer descriptions in the Sunnah."],
+["What is Salah?","Salah is the prescribed prayer performed at set times with specific words and actions.","Quran 2:43; 4:103."],
+["What is the Qiblah?","The Qiblah is the direction of the Kaaba in Makkah, which Muslims face during prayer.","Quran 2:144."],
+["What is Adhan?","Adhan is the call announcing that the time for prayer has begun.","Sahih al-Bukhari 604; Sahih Muslim 377."],
+["What is Iqamah?","Iqamah is the call made immediately before the congregational prayer begins.","Sahih al-Bukhari 605."],
+["What should I do if I oversleep Fajr?","If you sleep through a prayer unintentionally, pray it when you wake up or remember.","Sahih al-Bukhari 597; Sahih Muslim 684."],
+["Can I pray in a clean room?","Yes. Prayer can be performed in a clean place that meets the conditions of prayer.","Sahih al-Bukhari 335; Quran 2:125."],
+["Do I need Wudu for Salah?","Ritual purification is required for prayer unless a valid concession applies, such as the rules of tayammum.","Quran 5:6; Sahih Muslim 224."],
+["What is Jumu'ah prayer?","Jumu'ah is the congregational Friday prayer, which replaces Dhuhr for those for whom it is obligatory.","Quran 62:9-10."],
+["Who is required to attend Jumu'ah?","Friday prayer is obligatory for eligible adult Muslim men according to the established rulings. There are exemptions and detailed conditions.","Quran 62:9; Sunan Abi Dawud 1067."],
+["What is Witr prayer?","Witr is an odd-numbered prayer performed after Isha and before Fajr. Sunni schools differ on its legal classification.","Sahih al-Bukhari 990; Sahih Muslim 749."],
+["What is Tahajjud?","Tahajjud is voluntary night prayer. It is prayed after Isha, often after sleeping, before Fajr.","Quran 17:79; Sahih al-Bukhari 1145."],
+["Can I make dua in Sujood?","The Prophet taught that a servant is especially close to Allah while prostrating, so increase supplication there.","Sahih Muslim 482."],
+["What is Sujood?","Sujood is prostration in prayer, when the worshipper places the required body parts on the ground.","Sahih al-Bukhari 812; Sahih Muslim 490."],
+["What is Ruku?","Ruku is the bowing position in prayer, in which the worshipper glorifies Allah.","Quran 22:77; Sahih Muslim 772."],
+["What if I lose focus in prayer?","Try to understand what you recite, remove distractions, and gently bring your attention back to the prayer.","Quran 23:1-2."],
+["Can I pray while sitting?","A person who cannot stand may pray sitting, and if unable, according to their ability. Details depend on the situation.","Sahih al-Bukhari 1117."],
+["Can I combine prayers?","Combining prayers is allowed in certain circumstances in the Sunnah, such as travel, with details differing among schools and situations.","Sahih Muslim 705."],
+["What is Qasr prayer?","Qasr means shortening certain four-rakah prayers to two during qualifying travel. The conditions differ in fiqh.","Quran 4:101; Sahih Muslim 686."],
+["What should I do after Salah?","You may make the prescribed remembrances and supplications reported from the Prophet after the obligatory prayer.","Sahih Muslim 591-596."]
+],
+"Purification": [
+["What is Wudu?","Wudu is the ritual washing performed before prayer and certain acts of worship.","Quran 5:6."],
+["How do I perform Wudu?","The Quran names washing the face and arms, wiping the head, and washing the feet. The Sunnah explains the detailed method.","Quran 5:6; Sahih al-Bukhari 159."],
+["What breaks Wudu?","Passing urine, stool, or wind breaks Wudu. Other matters, such as sleep and touching, have school-specific details.","Quran 5:6; Sahih Muslim 362."],
+["What is Ghusl?","Ghusl is a full ritual bath required in certain states of major ritual impurity.","Quran 4:43; 5:6."],
+["When is Ghusl required?","Ghusl is required after sexual intercourse and after ejaculation, and at the end of menstruation or postnatal bleeding before resuming prayer.","Quran 4:43; Sahih Muslim 349."],
+["What is Tayammum?","Tayammum is dry purification using clean earth when water is unavailable or cannot safely be used.","Quran 4:43; 5:6."],
+["Can I make Wudu with little water?","Yes. The Sunnah teaches avoiding waste when using water for purification.","Sahih al-Bukhari 201; Sahih Muslim 325."],
+["Does sleeping break Wudu?","Deep sleep can invalidate Wudu. The exact threshold and details differ among Sunni schools.","Sunan Abi Dawud 200; fiqh of the four schools."],
+["Does bleeding break Wudu?","The schools differ on whether and when bleeding affects Wudu. Follow the guidance of your school or a qualified scholar.","Fiqh of the four Sunni schools."],
+["Does touching a spouse break Wudu?","The Sunni schools differ on whether skin contact between spouses invalidates Wudu and under what conditions.","Quran 4:43; fiqh of the four Sunni schools."],
+["Can I wipe over socks?","Wiping over qualifying footwear is established in the Sunnah, but conditions such as how the footwear is worn and its type are discussed by the schools.","Sahih Muslim 276."],
+["What is najasah?","Najasah means ritual impurity. Islamic law explains how to remove impurities from the body, clothes, and place of prayer.","Quran 74:4; fiqh chapters on purity."],
+["Can I pray with a stain on my clothes?","It depends on whether the stain is considered impure, its amount, and the relevant school rulings. Ask a scholar if unsure.","Quran 74:4; fiqh chapters on purity."],
+["What is menstruation in Islamic law?","Menstruation is a natural condition with specific rules for prayer, fasting, and purification. Details differ among schools.","Quran 2:222."],
+["Do women pray during menstruation?","A menstruating woman does not perform the prescribed prayer during menstruation and does not make up those prayers afterward.","Sahih al-Bukhari 321; Sahih Muslim 335."],
+["Do missed Ramadan fasts need to be made up after menstruation?","Yes. Missed Ramadan fasts due to menstruation are made up later, while missed prayers are not made up.","Sahih Muslim 335."],
+["What is postnatal bleeding?","Postnatal bleeding is bleeding after childbirth. It has rules for prayer and fasting, with detailed limits discussed by the schools.","Fiqh of the four Sunni schools."],
+["Can I do Wudu over makeup?","If a product forms a barrier that prevents water reaching required areas, it must be removed for Wudu. Whether a product forms a barrier depends on its properties.","Quran 5:6."],
+["Does nail polish affect Wudu?","Conventional nail polish forms a barrier over the nail, so it must be removed before Wudu. Product types can differ.","Quran 5:6."],
+["Can I use a towel after Ghusl?","Yes. Drying yourself after Ghusl is generally permissible.","Sahih al-Bukhari 266; reports on bathing."],
+["What is the fitrah of personal hygiene?","The Sunnah mentions practices such as trimming nails, removing underarm hair, and removing pubic hair as part of natural cleanliness.","Sahih Muslim 257."],
+["How often should I trim my nails?","Keep nails clean and do not leave the listed grooming practices beyond forty nights.","Sahih Muslim 258."],
+["Can I make Wudu in the shower?","Yes, if you complete the required acts of Wudu and avoid anything that invalidates it. Intention and order details differ by school.","Quran 5:6."],
+["Is clean water required for Wudu?","Wudu requires water that is legally suitable for purification. The detailed rules for changed or mixed water are covered in fiqh.","Quran 5:6."],
+["What if I am ill and water harms me?","The Quran permits tayammum when a person is ill and cannot use water safely, subject to the rules of the situation.","Quran 4:43; 5:6."]
+],
+"Fasting": [
+["What is Ramadan?","Ramadan is the ninth month of the Islamic lunar calendar. Eligible Muslims fast from dawn until sunset.","Quran 2:183-185."],
+["Who must fast Ramadan?","Fasting is obligatory for eligible adult Muslims who are able. Islamic law recognises exemptions for illness, travel, and other circumstances.","Quran 2:183-185."],
+["What is Suhoor?","Suhoor is the pre-dawn meal. The Prophet encouraged eating it.","Sahih al-Bukhari 1923; Sahih Muslim 1095."],
+["What is Iftar?","Iftar is the meal at sunset when a fasting person ends the fast. The Sunnah encourages not delaying it once sunset is certain.","Sahih al-Bukhari 1957; Sahih Muslim 1098."],
+["When does the fast begin?","The fast begins at true dawn, when Fajr time starts.","Quran 2:187."],
+["When does the fast end?","The fast ends at sunset, when Maghrib time begins.","Quran 2:187; Sahih al-Bukhari 1956."],
+["Can I drink water while fasting?","A person observing the obligatory fast abstains from food and drink from true dawn until sunset.","Quran 2:187."],
+["What if I eat by mistake while fasting?","If you eat or drink forgetfully, continue the fast. The Prophet said Allah provided the food and drink.","Sahih al-Bukhari 1933; Sahih Muslim 1155."],
+["Can I brush my teeth while fasting?","Using a miswak is established in the Sunnah. Toothpaste use has detailed scholarly discussion, especially about swallowing anything. Be careful and ask your scholar.","Sahih al-Bukhari 1933; fiqh discussions of fasting."],
+["Can I shower while fasting?","Yes. Washing or showering does not itself invalidate the fast, provided nothing is deliberately swallowed.","Sahih al-Bukhari 1936; reports of the Prophet bathing while fasting."],
+["Can I swim while fasting?","Swimming itself is not automatically a fast-breaker, but swallowing water would invalidate the fast. Avoid unnecessary risk.","General fiqh principles; Quran 2:187."],
+["Can I travel while fasting?","A traveller may postpone the fast and make up the days later. Whether to fast while travelling depends on hardship and the applicable rulings.","Quran 2:185; Sahih Muslim 1121."],
+["Can a sick person skip fasting?","A sick person for whom fasting causes harm or serious difficulty may use the Quranic concession and make up the missed days as required.","Quran 2:185."],
+["What if I vomit while fasting?","Unintentional vomiting does not invalidate the fast according to the reported ruling. Deliberately causing vomiting has a different ruling.","Sunan Abi Dawud 2380; Jami at-Tirmidhi 720."],
+["Does nosebleed break the fast?","A nosebleed by itself does not mean food or drink has been consumed. If blood reaches the throat, ask a scholar about the details.","General fiqh principles; Quran 2:187."],
+["Can I use perfume while fasting?","Using ordinary perfume does not involve eating or drinking. Some specific substances and inhaled products have separate discussions.","General fiqh discussions of fasting."],
+["Can I use eye drops while fasting?","Scholars differ on some medical drops and whether they affect the fast. Ask a qualified scholar or trusted local authority about your medication.","Contemporary fiqh discussion; consult a qualified scholar."],
+["What is Fidya?","Fidya is compensation involving feeding a needy person in certain cases where a person cannot fast and is not expected to make it up. Conditions differ by school.","Quran 2:184; tafsir and fiqh discussions."],
+["What is Kaffarah?","Kaffarah is an expiation required for certain violations. Its application and form depend on the act and school of law.","Quran 2:184; Sahih al-Bukhari 1936."],
+["What is Laylat al-Qadr?","It is the Night of Decree in Ramadan, described as better than a thousand months.","Quran 97:1-5."],
+["What is Itikaf?","Itikaf is staying in the mosque for worship and devotion, especially in the last ten nights of Ramadan.","Quran 2:187; Sahih al-Bukhari 2026."],
+["Can I fast on Eid day?","Fasting on Eid al-Fitr and Eid al-Adha is prohibited.","Sahih al-Bukhari 1991; Sahih Muslim 1138."],
+["What is the six days of Shawwal fast?","Fasting six days in Shawwal after Ramadan is a recommended voluntary fast.","Sahih Muslim 1164."],
+["What is the Day of Arafah fast?","Fasting on the Day of Arafah is recommended for those not performing Hajj. The Hadith mentions expiation for the previous and coming year.","Sahih Muslim 1162."],
+["Can I fast every day?","The Prophet warned against continuous fasting without breaks and taught balanced voluntary fasting, such as the fast of Dawud.","Sahih al-Bukhari 1976; Sahih Muslim 1159."]
+],
+"Food": [
+["What does Halal mean?","Halal means permitted under Islamic law. Food must meet the relevant rules to be considered halal.","Quran 2:168; 5:88."],
+["What does Haram mean?","Haram means prohibited by Islamic law. Muslims should avoid what Allah and His Messenger have prohibited.","Quran 16:116."],
+["Is pork Haram?","Yes. Pork is explicitly prohibited in the Quran, except in a genuine necessity under strict limits.","Quran 2:173; 5:3."],
+["Is alcohol Haram?","Intoxicants are prohibited. Muslims are commanded to avoid them.","Quran 5:90-91."],
+["Is meat automatically halal?","No. The animal and slaughter must meet Islamic requirements. Details vary for some cases and certification standards.","Quran 5:3; 5:5."],
+["Can Muslims eat seafood?","The majority of Sunni scholars permit seafood, while the Hanafi school has more specific rules about which sea animals are permitted.","Quran 5:96; Sunan Abi Dawud 83."],
+["Is gelatin halal?","It depends on its source and the transformation involved. Scholars and halal certification bodies may differ, so check the source and a trusted authority.","Quran 2:173; contemporary fiqh discussion."],
+["Are vegetarian foods halal?","Vegetarian food is generally permissible if it contains no prohibited ingredients and is not harmful or otherwise forbidden.","Quran 2:168; 5:88."],
+["Can I eat food prepared by Christians or Jews?","The Quran permits the food of the People of the Book, with conditions and scholarly details. This does not make pork or intoxicants permissible.","Quran 5:5."],
+["Is blood halal to eat?","Flowing blood is prohibited as food in the Quran.","Quran 2:173; 6:145."],
+["Can I eat food with vanilla extract?","Products containing alcohol-based extracts raise differing scholarly and certification questions. Check the actual ingredients and ask a trusted scholar.","Quran 5:90; contemporary fiqh discussion."],
+["Is it permissible to waste food?","No. Islam teaches moderation and forbids wastefulness.","Quran 7:31; 17:26-27."],
+["Should I say Bismillah before eating?","Yes. Mention Allah's name before eating. If you forget, say it when you remember.","Sahih al-Bukhari 5376; Sunan Abi Dawud 3767."],
+["Which hand should I eat with?","The Prophet instructed Muslims to eat with the right hand.","Sahih Muslim 2020."],
+["Can I eat while standing?","Reports address eating and drinking while standing. Scholars discuss how to reconcile them; sitting is generally recommended when easy.","Sahih Muslim 2024; Sahih al-Bukhari 1637."],
+["Is overeating discouraged?","The Sunnah teaches moderation and not filling the stomach excessively.","Jami at-Tirmidhi 2380."],
+["Can Muslims eat food cooked with wine?","Alcoholic wine is prohibited. Cooking does not automatically make it permissible. Ask a scholar about a specific product or preparation.","Quran 5:90-91."],
+["Are energy drinks halal?","Check the ingredients and whether the drink contains prohibited or harmful substances. The name alone does not determine its ruling.","Quran 2:168; 7:157."],
+["Can I eat at a restaurant that serves pork?","The presence of pork on the menu does not by itself decide every dish's status. Check ingredients and cross-contact, and follow a trusted halal standard.","Quran 2:168; 5:88."],
+["What is Zabiha?","Zabiha commonly refers to meat slaughtered according to Islamic requirements. Details of slaughter and certification matter.","Quran 5:3; 6:118."],
+["Can I eat food if I am unsure it is halal?","When unsure, check ingredients and ask a reliable source. The Prophet taught avoiding doubtful matters as a way to protect one's religion.","Sahih al-Bukhari 52; Sahih Muslim 1599."],
+["Are insects halal to eat?","The schools differ on which insects may be eaten. Locusts are specifically permitted in an authentic report.","Sahih al-Bukhari 5495; fiqh of the four schools."],
+["Is cheese made with animal rennet halal?","Rennet sources and their rulings have scholarly differences. Check the source and follow a trusted halal authority.","Fiqh discussions on food and slaughter."],
+["Can I eat food containing pork-derived enzymes?","The ruling depends on the ingredient's source and processing, and scholars may differ. Verify with the manufacturer and a qualified scholar.","Quran 2:173; contemporary fiqh discussion."],
+["Is hunting halal?","Hunting is permitted under conditions, including mentioning Allah's name and observing the rules for the animal and method.","Quran 5:4; Sahih al-Bukhari 5478."]
+],
+"Money": [
+["What is Riba?","Riba is prohibited increase in certain lending and exchange transactions. Modern financial products need careful scholarly assessment.","Quran 2:275-279."],
+["What is Zakat?","Zakat is obligatory charity on qualifying wealth when its conditions are met.","Quran 9:60; 2:43."],
+["What is Sadaqah?","Sadaqah is voluntary charity and can include money, help, and kind actions.","Quran 2:261; Sahih Muslim 1009."],
+["Is cheating in business allowed?","No. Islam forbids cheating and requires honesty in trade.","Sahih Muslim 102."],
+["Can Muslims make a profit?","Yes. Trade and lawful profit are permitted when transactions avoid prohibited elements such as fraud and riba.","Quran 4:29; 2:275."],
+["What is a halal business?","A halal business sells permissible goods or services and uses lawful, honest transactions.","Quran 4:29; 5:2."],
+["Is gambling Haram?","Yes. The Quran prohibits gambling and commands believers to avoid it.","Quran 5:90-91."],
+["What is Gharar?","Gharar refers to excessive uncertainty in a contract. Islamic commercial law restricts certain highly uncertain transactions.","Sahih Muslim 1513."],
+["Can I borrow money?","Borrowing is allowed when the agreement is lawful and does not involve prohibited interest or other prohibited conditions.","Quran 2:282; 2:275."],
+["Can I lend money without interest?","Yes. Giving an interest-free loan is permitted and can be a good deed.","Quran 2:280; Sahih Muslim 1563."],
+["What is a debt in Islam?","A debt is a serious responsibility. The Quran instructs believers to document deferred debts clearly.","Quran 2:282."],
+["Should I repay debts on time?","Yes. A person who is able to repay should not delay payment unfairly.","Sahih al-Bukhari 2400; Sahih Muslim 1564."],
+["Can I give charity anonymously?","Yes. Giving charity privately is praised, although public giving can also be good when done sincerely.","Quran 2:271."],
+["Who can receive Zakat?","The Quran names eight categories of Zakat recipients, including the poor and needy.","Quran 9:60."],
+["Do I pay Zakat on all my possessions?","Not every personal possession is zakatable. Rules depend on the type of wealth, ownership, value, and passage of time.","Quran 9:103; fiqh chapters on Zakat."],
+["What is Nisab?","Nisab is the minimum qualifying amount of wealth for certain Zakat obligations. Its calculation depends on the type of asset.","Sahih al-Bukhari 1459; fiqh chapters on Zakat."],
+["What is a halal investment?","A halal investment must meet Islamic rules, including restrictions on interest, prohibited business activities, and certain contract features.","Quran 2:275; 4:29."],
+["Are stocks halal?","A stock's permissibility depends on the company's activities, finances, and the screening method used. Ask a qualified Islamic finance adviser.","Quran 5:2; 2:275."],
+["Is cryptocurrency halal?","Scholars differ on cryptocurrency because of its features, use, risk, and regulation. There is no single ruling for every coin or transaction.","Contemporary Islamic finance scholarship."],
+["Can I sell something I do not own?","Islamic law generally restricts selling what one does not own or control, with recognised contract exceptions. Ask about the exact arrangement.","Sunan Abi Dawud 3503; Jami at-Tirmidhi 1232."],
+["Is bribery allowed?","Bribery is prohibited when used to obtain an unlawful advantage or take another person's rights.","Quran 2:188; Sunan Abi Dawud 3580."],
+["Can I work in a shop that sells alcohol?","The ruling depends on your role and the work performed. Ask a qualified scholar with the exact job duties.","Quran 5:2; 5:90."],
+["Is insurance halal?","Conventional insurance and cooperative takaful are assessed differently by scholars. The contract and local context matter.","Contemporary Islamic finance scholarship."],
+["What is Mahr?","Mahr is the bridal gift due to the wife in an Islamic marriage. It belongs to her.","Quran 4:4."],
+["Is inheritance divided equally between everyone?","Islamic inheritance has prescribed shares for specified relatives. The distribution depends on which relatives survive the deceased.","Quran 4:11-12; 4:176."]
+],
+"Character": [
+["Why is honesty important?","Islam commands truthfulness and praises those who speak honestly.","Quran 9:119; Sahih al-Bukhari 6094."],
+["What is backbiting?","Backbiting is saying something true about a person behind their back that they would dislike. It is prohibited except for recognised needs.","Quran 49:12; Sahih Muslim 2589."],
+["What is slander?","Slander is making a false accusation or spreading false information about someone. It is a serious sin.","Quran 24:15-16; 33:58."],
+["Is lying allowed?","Lying is generally prohibited. Islamic texts mention limited exceptions, which should not be expanded beyond their recognised scope.","Quran 9:119; Sahih Muslim 2605."],
+["Why should Muslims be patient?","Patience helps a believer remain steady through hardship and obey Allah.","Quran 2:153; 39:10."],
+["Is arrogance disliked in Islam?","Yes. The Quran warns against pride and looking down on people.","Quran 31:18; Sahih Muslim 91."],
+["How should I treat my parents?","Treat your parents with kindness and respectful speech, even when you disagree, while not obeying them in sin.","Quran 17:23-24; 29:8."],
+["How should I treat my neighbours?","Islam commands kindness to neighbours, whether close relatives or not.","Quran 4:36; Sahih al-Bukhari 6018."],
+["Is forgiveness encouraged?","Yes. The Quran praises those who control anger and forgive others. Forgiveness does not require accepting continued abuse.","Quran 3:134; 42:40."],
+["What is Sabr?","Sabr is patience, perseverance, and remaining obedient to Allah during difficulty.","Quran 2:153; 16:127."],
+["What is Shukr?","Shukr means gratitude to Allah. A believer recognises blessings and uses them in good ways.","Quran 14:7; 2:152."],
+["Should Muslims keep promises?","Yes. The Quran commands believers to fulfil their promises and commitments.","Quran 17:34; 5:1."],
+["Is mocking people allowed?","No. The Quran forbids mocking, insulting, and giving offensive nicknames to others.","Quran 49:11."],
+["How should Muslims speak?","Speak in a good and respectful way. Avoid insults, harmful gossip, and unnecessary arguments.","Quran 2:83; 17:53."],
+["What is humility?","Humility means avoiding pride and treating people with respect. It is praised in the Quran and Sunnah.","Quran 25:63; Sahih Muslim 2588."],
+["Should I help someone in need?","Yes. Helping others and relieving their difficulties are encouraged acts of goodness.","Quran 5:2; Sahih Muslim 2699."],
+["Is envy harmful?","Envy that wishes another person to lose their blessing is blameworthy. Ask Allah for blessings and contentment.","Quran 4:32; Sahih al-Bukhari 6065."],
+["What is good character?","Good character includes honesty, patience, mercy, humility, and keeping people's rights.","Quran 68:4; Sahih al-Bukhari 6035."],
+["Should I return a greeting?","Yes. Return greetings with an equal or better greeting.","Quran 4:86."],
+["Is smiling at others good?","The Prophet taught that even meeting another person with a cheerful face can be charity.","Jami at-Tirmidhi 1956."],
+["How should I handle anger?","Try to control anger, seek refuge in Allah, and avoid acting unjustly while angry.","Quran 3:134; Sahih al-Bukhari 6116."],
+["Is kindness rewarded?","Allah loves those who do good, and the Prophet taught that kindness beautifies matters.","Quran 2:195; Sahih Muslim 2594."],
+["Should I judge people by appearance?","A person's worth is not determined by wealth or appearance. The Prophet taught that Allah looks at hearts and deeds.","Sahih Muslim 2564."],
+["What is modesty?","Modesty is a valued quality that encourages respectful behaviour and avoiding indecency.","Sahih al-Bukhari 24; Sahih Muslim 36."],
+["Should Muslims avoid wasting time?","Muslims are encouraged to use their time in beneficial ways and remember that life is a trust.","Quran 103:1-3; Sahih al-Bukhari 6412."]
+],
+"Family": [
+["What does Islam teach about marriage?","Marriage is a serious commitment based on tranquillity, affection, mercy, and mutual responsibilities.","Quran 30:21; 4:19."],
+["What is Nikah?","Nikah is the Islamic marriage contract, which has required conditions and rights.","Quran 4:21; Sahih al-Bukhari 5136."],
+["What is Mahr?","Mahr is a bridal gift owed to the wife. It is her property and should be given willingly.","Quran 4:4."],
+["Do parents have rights in Islam?","Yes. Islam places great emphasis on kindness, care, and respect towards parents.","Quran 17:23-24."],
+["Do children have rights?","Yes. Children have rights to care, protection, education, and fair treatment.","Quran 6:151; Sahih al-Bukhari 2587."],
+["Can parents force a marriage?","Consent is an important part of marriage. Details of guardianship and contract validity differ by school and circumstance.","Sahih al-Bukhari 5136; Sahih Muslim 1419."],
+["What does Islam say about divorce?","Divorce is permitted under rules and procedures, but it should be handled responsibly and without injustice.","Quran 2:229-232; 65:1."],
+["What is Khul'?","Khul' is a form of separation requested by the wife under Islamic law, with conditions and procedures explained by scholars.","Quran 2:229; Sahih al-Bukhari 5273."],
+["What is the waiting period after divorce?","The waiting period, or iddah, depends on circumstances such as whether the marriage was consummated and whether the woman is pregnant.","Quran 2:228; 65:4."],
+["What is the waiting period after a husband's death?","The general waiting period for a widow is four months and ten days, with a separate rule for pregnancy.","Quran 2:234; 65:4."],
+["How should spouses treat each other?","Spouses should live together with kindness, fairness, and respect for each other's rights.","Quran 4:19; 30:21."],
+["Does a husband have financial duties?","Islamic law places financial responsibilities on the husband within the marriage. Details depend on circumstances and school rulings.","Quran 4:34; 2:233."],
+["Does a wife own her own money?","Yes. A woman has independent ownership of her wealth and her mahr.","Quran 4:4; 4:32."],
+["What does Islam say about family ties?","Maintaining family ties is strongly encouraged, and cutting them without a valid reason is warned against.","Quran 4:1; Sahih al-Bukhari 5984."],
+["Can I disagree respectfully with my parents?","Yes. You should speak respectfully and kindly. Obedience to parents does not apply when they command disobedience to Allah.","Quran 31:15; 17:23."],
+["What is breastfeeding's place in Islam?","The Quran mentions two full years as the period for those who wish to complete breastfeeding, while also discussing parental consultation.","Quran 2:233."],
+["How should siblings treat each other?","Siblings should avoid injustice, keep family ties, and treat one another with kindness.","Quran 4:1; 49:10."],
+["What is adoption in Islam?","Caring for an orphan or child is highly rewarded. Islamic law preserves the child's lineage and does not erase biological parentage.","Quran 33:4-5; 76:8."],
+["How should Muslims care for orphans?","The Quran commands kind treatment of orphans and forbids taking their property unjustly.","Quran 4:2; 93:9."],
+["What is the right of a widow?","A widow has rights to inheritance and a defined waiting period. Her circumstances should be treated with care and fairness.","Quran 2:234; 4:12."],
+["Can relatives receive Sadaqah?","Voluntary charity to needy relatives can bring both the reward of charity and maintaining family ties.","Jami at-Tirmidhi 658; Sunan an-Nasa'i 2582."],
+["What does Islam say about domestic harm?","Islam forbids injustice and commands good treatment. Anyone facing harm should seek safety and trusted support.","Quran 4:19; 16:90."],
+["Who can be a marriage guardian?","The rules of wali or marriage guardian differ between the Hanafi school and the other Sunni schools. Ask a qualified scholar about a specific case.","Sunan Abi Dawud 2085; fiqh of the four schools."],
+["Can Muslims marry People of the Book?","The Quran permits Muslim men to marry chaste women from the People of the Book under conditions. Muslim women's marriage rulings are different in classical Sunni law.","Quran 5:5; 60:10."],
+["What is the importance of raising children well?","Parents are responsible for caring for and guiding their children with mercy, teaching, and good example.","Quran 66:6; Sahih al-Bukhari 893."]
+],
+"Prophets": [
+["Who was Adam?","Adam, peace be upon him, was the first human and a prophet. Allah created him and taught him.","Quran 2:30-39."],
+["Who was Nuh?","Nuh, peace be upon him, was a messenger who called his people to worship Allah for many years.","Quran 11:25-49; 71:1-28."],
+["Who was Ibrahim?","Ibrahim, peace be upon him, was a prophet known for his devotion to Allah and rejection of idol worship.","Quran 2:124-132; 6:74-83."],
+["Who was Ismail?","Ismail, peace be upon him, was the son of Ibrahim and a prophet praised for keeping his promises.","Quran 19:54-55; 37:100-107."],
+["Who was Ishaq?","Ishaq, peace be upon him, was the son of Ibrahim and a prophet. He was the father of Yaqub.","Quran 11:71-73; 37:112-113."],
+["Who was Yaqub?","Yaqub, peace be upon him, was a prophet and the father of Yusuf and his brothers.","Quran 12:4-6; 2:132."],
+["Who was Yusuf?","Yusuf, peace be upon him, was a prophet whose story teaches patience, trust in Allah, and forgiveness.","Quran, Surah 12."],
+["Who was Musa?","Musa, peace be upon him, was a major prophet sent to Pharaoh and the Children of Israel.","Quran 20:9-98; 28:3-46."],
+["Who was Harun?","Harun, peace be upon him, was the brother of Musa and a prophet who supported him in his mission.","Quran 20:29-36."],
+["Who was Dawud?","Dawud, peace be upon him, was a prophet and king. Allah gave him the Zabur.","Quran 4:163; 17:55."],
+["Who was Sulayman?","Sulayman, peace be upon him, was a prophet and king whom Allah granted great authority and wisdom.","Quran 27:15-44."],
+["Who was Ayyub?","Ayyub, peace be upon him, is remembered for patience during hardship and turning to Allah.","Quran 21:83-84; 38:41-44."],
+["Who was Yunus?","Yunus, peace be upon him, called his people to Allah and made a sincere supplication in distress.","Quran 21:87-88; 37:139-148."],
+["Who was Zakariya?","Zakariya, peace be upon him, was a prophet who prayed to Allah for a child and was given Yahya.","Quran 3:37-41; 19:2-11."],
+["Who was Yahya?","Yahya, peace be upon him, was the son of Zakariya. The Quran describes him as righteous and devoted.","Quran 3:39; 19:12-15."],
+["Who was Isa?","Isa, peace be upon him, was the Messiah and a messenger of Allah, born miraculously to Maryam.","Quran 3:45-51; 19:16-36."],
+["Who was Maryam?","Maryam was a righteous and devoted woman chosen by Allah. She is honoured in the Quran.","Quran 3:42-47; 19:16-36."],
+["Who was Muhammad?","Muhammad, peace be upon him, was the final messenger sent as a mercy to the worlds.","Quran 33:40; 21:107."],
+["How many prophets are named in the Quran?","The Quran names 25 prophets explicitly. Muslims believe Allah sent other messengers whose names are not given to us.","Quran 4:164; 40:78."],
+["Were all prophets Muslims?","In the broad Quranic sense, all prophets called people to submit to the one God. Their revealed laws differed in some details.","Quran 3:19; 42:13."],
+["What was the miracle of Musa?","By Allah's permission, Musa was given signs including his staff and his hand shining brightly.","Quran 7:107-108; 20:17-23."],
+["What was the miracle of Isa?","By Allah's permission, Isa healed the blind and lepers and raised the dead, as signs of his prophethood.","Quran 3:49; 5:110."],
+["What was the miracle given to Prophet Muhammad?","The Quran is his greatest enduring miracle. Authentic reports also describe other miracles by Allah's permission.","Quran 17:88; Sahih al-Bukhari 4981."],
+["What is the story of the People of the Cave?","The Quran tells of young believers who sought refuge in a cave and were protected by Allah.","Quran 18:9-26."],
+["What can we learn from Prophet Yusuf?","His story teaches patience, chastity, trust in Allah, and forgiveness when given power.","Quran 12:23-29; 12:90-92."]
+],
+"Worship": [
+["What is Dua?","Dua is calling upon Allah and asking Him for guidance, help, forgiveness, and good.","Quran 2:186; 40:60."],
+["What is Dhikr?","Dhikr is remembering Allah through words and actions, such as SubhanAllah and Alhamdulillah.","Quran 13:28; 33:41."],
+["What is Istighfar?","Istighfar means asking Allah to forgive sins. Muslims are encouraged to seek forgiveness often.","Quran 71:10; Sahih al-Bukhari 6307."],
+["What is Tawbah?","Tawbah is sincere repentance: stop the sin, regret it, resolve not to return, and restore people's rights if harmed.","Quran 66:8; 39:53."],
+["What is Hajj?","Hajj is the pilgrimage to Makkah, obligatory once in a lifetime for Muslims who are able to perform it.","Quran 3:97; Sahih al-Bukhari 8."],
+["What is Umrah?","Umrah is a pilgrimage to Makkah that can be performed outside the Hajj days. Its rulings and status are explained in fiqh.","Quran 2:196; Sahih Muslim 1349."],
+["What is the Shahadah?","The Shahadah is the testimony that none has the right to be worshipped except Allah and Muhammad is His messenger.","Sahih al-Bukhari 8; Sahih Muslim 16."],
+["What is Takbir?","Takbir is saying Allahu Akbar, meaning Allah is greater than everything.","Sahih al-Bukhari 380; Quran 17:111."],
+["What does SubhanAllah mean?","It means Allah is far above every imperfection. It is a phrase of glorification.","Quran 17:44; Sahih Muslim 223."],
+["What does Alhamdulillah mean?","It means all praise belongs to Allah. Muslims say it to praise and thank Him.","Quran 1:2; 14:39."],
+["What does Allahu Akbar mean?","It means Allah is the Greatest. Muslims say it in prayer and in remembrance.","Quran 17:111."],
+["What is Salawat upon the Prophet?","Salawat is asking Allah to send blessings and peace upon Prophet Muhammad.","Quran 33:56; Sahih al-Bukhari 3370."],
+["What is the best day of the week?","Friday is described as the best day on which the sun rises.","Sahih Muslim 854."],
+["What is the virtue of the first ten days of Dhul-Hijjah?","Good deeds during the first ten days of Dhul-Hijjah are especially beloved to Allah.","Sahih al-Bukhari 969."],
+["What is Qurbani or Udhiyah?","Udhiyah is the ritual animal sacrifice offered during Eid al-Adha. Its obligation and conditions differ among Sunni schools.","Quran 22:34-37; Sahih al-Bukhari 5558."],
+["What is Eid al-Fitr?","Eid al-Fitr is the festival marking the end of Ramadan. Muslims pray the Eid prayer and give Zakat al-Fitr when due.","Sahih al-Bukhari 1503; 2:185."],
+["What is Eid al-Adha?","Eid al-Adha occurs during the Hajj season and commemorates devotion to Allah, including the sacrifice connected with Ibrahim.","Quran 37:102-107."],
+["What is Zakat al-Fitr?","Zakat al-Fitr is a charity due at the end of Ramadan, with details about amount, recipients, and timing in Hadith and fiqh.","Sahih al-Bukhari 1503; Sahih Muslim 984."],
+["What is voluntary prayer?","Voluntary prayer is prayer beyond the obligatory prayers. Examples include Sunnah prayers, Duha, and night prayer.","Sahih al-Bukhari 1129; 1163."],
+["What is Salat al-Duha?","Duha is a voluntary prayer performed after sunrise has risen and before midday.","Sahih Muslim 720."],
+["What is the mosque's role?","A mosque is a place for prayer, remembrance, learning, and community worship.","Quran 9:18; 72:18."],
+["Can women attend the mosque?","Women may attend the mosque. The Prophet instructed that women should not be prevented from attending the mosques.","Sahih al-Bukhari 900; Sahih Muslim 442."],
+["What is the reward of praying in congregation?","The congregational prayer is described as having greater reward than praying alone.","Sahih al-Bukhari 645; Sahih Muslim 650."],
+["What is sincerity in worship?","Sincerity means doing acts of worship for Allah rather than seeking people's praise.","Quran 98:5; Sahih al-Bukhari 1."],
+["Can good everyday actions become worship?","Permissible everyday actions can be rewarded when done with a sincere intention and in a lawful way.","Sahih al-Bukhari 1; Sahih Muslim 1006."]
+],
+"Daily Life": [
+["What should I say before eating?","Say Bismillah before eating. If you forget, mention Allah's name when you remember.","Sahih al-Bukhari 5376; Sunan Abi Dawud 3767."],
+["What should I say after eating?","Praise Allah after eating. A well-known supplication begins with 'Alhamdulillah'.","Sahih Muslim 2734."],
+["How should I greet another Muslim?","Say Assalamu Alaikum, meaning peace be upon you. Return the greeting with an equal or better one.","Quran 4:86."],
+["What should I say when entering my home?","Remember Allah and greet those in the home. The Sunnah teaches mentioning Allah when entering and eating.","Sahih Muslim 2018."],
+["What should I say before sleeping?","The Prophet taught supplications before sleep, including reciting Ayat al-Kursi and the last three surahs.","Sahih al-Bukhari 2311; 5017."],
+["What should I do when waking up?","Praise Allah for giving life after sleep and begin the day with remembrance.","Sahih al-Bukhari 6312."],
+["What should I say when sneezing?","The person who sneezes says Alhamdulillah, and the listener responds YarhamukAllah.","Sahih al-Bukhari 6224; Sahih Muslim 2991."],
+["What should I say when visiting someone sick?","Visit with kindness and make dua for the sick person. The Sunnah encourages visiting the ill.","Sahih al-Bukhari 5649; Sahih Muslim 2162."],
+["How should I behave in public?","Be considerate, avoid harming others, and remove harmful obstacles from people's paths.","Sahih al-Bukhari 2472; Sahih Muslim 1009."],
+["Is cleanliness important?","Yes. Cleanliness and purification are important in Islamic worship and daily life.","Quran 2:222; Sahih Muslim 223."],
+["Can Muslims keep pets?","Keeping permissible animals is allowed with proper care. Neglecting or mistreating animals is sinful.","Sahih al-Bukhari 2363; Sahih Muslim 2242."],
+["How should I treat animals?","Treat animals with mercy, provide food and water, and do not cause unnecessary suffering.","Sahih al-Bukhari 2363; Sahih Muslim 2242."],
+["Can I play sports?","Physical activity and recreation are permissible when they avoid prohibited conduct and do not cause neglect of obligations.","Sahih Muslim 2664; general fiqh principles."],
+["Can Muslims listen to music?","Scholars have differing discussions about musical instruments, singing, and content. Follow a qualified scholar and avoid clearly prohibited lyrics or settings.","Sahih al-Bukhari 5590; scholarly discussions."],
+["Can Muslims draw pictures?","Islamic rulings distinguish between types of images, purposes, and objects. The topic has detailed scholarly discussion.","Sahih al-Bukhari 5950; Sahih Muslim 2106."],
+["Can Muslims take photographs?","Contemporary scholars differ on photography and its applications. Ask a qualified scholar for the ruling you follow.","Contemporary Sunni scholarly discussion."],
+["Is wearing perfume allowed?","Using pleasant fragrance is generally encouraged, with separate rulings about ingredients and use in particular contexts.","Sahih Muslim 2253."],
+["Can Muslims wear gold?","Gold jewellery is prohibited for men and permitted for women under the established Sunni rulings.","Sahih Muslim 2090."],
+["Can Muslim men wear silk?","Natural silk clothing is prohibited for men and permitted for women, according to authentic Hadith.","Sahih al-Bukhari 5837; Sahih Muslim 2069."],
+["What is the Islamic greeting's reply?","Reply Wa Alaikum Assalam, meaning and upon you be peace. You may return an even fuller greeting.","Quran 4:86."],
+["Should I keep secrets entrusted to me?","Keeping trusts is a serious responsibility. Do not betray what people entrust to you.","Quran 4:58; 8:27."],
+["Can I joke with friends?","Permissible humour is allowed, but avoid lying, insults, humiliation, and frightening people.","Sahih al-Bukhari 6046; Jami at-Tirmidhi 1990."],
+["Can I use social media?","Use it in lawful and beneficial ways. Avoid spreading rumours, exposing private matters, or harming others.","Quran 49:6; 49:12."],
+["What should I do if I hear a rumour?","Verify important news before passing it on, and avoid suspicion and gossip.","Quran 49:6; 49:12."],
+["How should I spend my free time?","Use time for beneficial activities, family, rest, learning, and worship. Avoid what harms your faith or others.","Quran 103:1-3; Sahih al-Bukhari 6412."]
+],
+};
+
+const questions = Object.entries(raw).flatMap(([category, entries]) =>
+  entries.map(([q,a,ref]) => ({category,q,a,ref,keywords:(q+" "+a+" "+category).toLowerCase()}))
+);
+const categories=["All",...Object.keys(raw)];
+let selectedCategory="All";
+const categoryBox=document.getElementById("categories");
+const results=document.getElementById("results");
+const chat=document.getElementById("chat");
+const input=document.getElementById("question");
+
+function drawCategories(){
+ categoryBox.innerHTML="";
+ categories.forEach(cat=>{
+  const btn=document.createElement("button");
+  btn.textContent=cat;
+  btn.className=selectedCategory===cat?"active":"";
+  btn.onclick=()=>{selectedCategory=cat;drawCategories();showResults();};
+  categoryBox.appendChild(btn);
+ });
 }
-];
-
-const categories = ["All", ...new Set(questions.map(x=>x.category))];
-let selectedCategory = "All";
-
-const categoryBox = document.getElementById("categories");
-const results = document.getElementById("results");
-const chat = document.getElementById("chat");
-const input = document.getElementById("question");
-
-function drawCategories() {
-  categoryBox.innerHTML = "";
-  categories.forEach(cat => {
-    const btn = document.createElement("button");
-    btn.textContent = cat;
-    btn.className = selectedCategory === cat ? "active" : "";
-    btn.onclick = () => {
-      selectedCategory = cat;
-      drawCategories();
-      showResults();
-    };
-    categoryBox.appendChild(btn);
-  });
+function showResults(query=""){
+ const words=query.toLowerCase().trim().split(/\s+/).filter(Boolean);
+ const matches=questions.filter(item=>{
+  const categoryMatch=selectedCategory==="All"||item.category===selectedCategory;
+  const searchable=(item.q+" "+item.keywords+" "+item.a+" "+item.category).toLowerCase();
+  return categoryMatch&&(words.length===0||words.some(word=>searchable.includes(word)));
+ });
+ results.innerHTML="";
+ document.getElementById("resultsTitle").textContent=matches.length+" QUESTIONS";
+ matches.forEach(item=>{
+  const card=document.createElement("div");card.className="card";
+  const title=document.createElement("h3");title.textContent=item.q;
+  const desc=document.createElement("p");desc.textContent=item.category;
+  card.append(title,desc);card.onclick=()=>showAnswer(item);results.appendChild(card);
+ });
+ if(!matches.length)results.textContent="No matching questions found. Try different words or another category.";
 }
-
-function showResults(query="") {
-  const words = query.toLowerCase().trim().split(/\s+/).filter(Boolean);
-
-  let matches = questions.filter(item => {
-    const categoryMatch = selectedCategory === "All" || item.category === selectedCategory;
-    const searchable = (item.q+" "+item.keywords+" "+item.a+" "+item.category).toLowerCase();
-    const searchMatch = words.length === 0 || words.some(word => searchable.includes(word));
-    return categoryMatch && searchMatch;
-  });
-
-  results.innerHTML = "";
-  document.getElementById("resultsTitle").textContent =
-    matches.length + " QUESTIONS";
-
-  matches.forEach(item => {
-    const card = document.createElement("div");
-    card.className = "card";
-    const title = document.createElement("h3");
-    title.textContent = item.q;
-    const desc = document.createElement("p");
-    desc.textContent = item.category;
-    card.append(title, desc);
-    card.onclick = () => showAnswer(item);
-    results.appendChild(card);
-  });
-
-  if (!matches.length) {
-    results.textContent = "No matching questions found. Try different words or another category.";
-  }
+function showAnswer(item){
+ chat.innerHTML="";
+ const box=document.createElement("div");box.className="message answer";
+ const heading=document.createElement("h3");heading.textContent=item.q;
+ const paragraph=document.createElement("p");paragraph.textContent=item.a;
+ const ref=document.createElement("span");ref.className="reference";ref.textContent="Reference: "+item.ref;
+ box.append(heading,paragraph,ref);chat.appendChild(box);
+ chat.scrollIntoView({behavior:"smooth",block:"start"});
 }
-
-function showAnswer(item) {
-  chat.innerHTML = "";
-  const box = document.createElement("div");
-  box.className = "message answer";
-
-  const heading = document.createElement("h3");
-  heading.textContent = item.q;
-
-  const paragraph = document.createElement("p");
-  paragraph.textContent = item.a;
-
-  const ref = document.createElement("span");
-  ref.className = "reference";
-  ref.textContent = "Reference: " + item.ref;
-
-  box.append(heading, paragraph, ref);
-  chat.appendChild(box);
-  chat.scrollIntoView({behavior:"smooth", block:"start"});
+function askQuestion(){
+ const value=input.value.trim();if(!value)return;
+ chat.innerHTML="";
+ const userBox=document.createElement("div");userBox.className="message user";userBox.textContent=value;chat.appendChild(userBox);
+ const words=value.toLowerCase().split(/\s+/).filter(Boolean);
+ const ranked=questions.map(item=>{
+  const searchable=(item.q+" "+item.keywords+" "+item.a+" "+item.category).toLowerCase();
+  let score=0;words.forEach(word=>{if(word.length>1&&searchable.includes(word))score++;});
+  return {item,score};
+ }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
+ if(ranked.length){
+  const best=ranked[0].item;const box=document.createElement("div");box.className="message answer";
+  const heading=document.createElement("h3");heading.textContent=best.q;
+  const paragraph=document.createElement("p");paragraph.textContent=best.a;
+  const ref=document.createElement("span");ref.className="reference";ref.textContent="Reference: "+best.ref;
+  const note=document.createElement("p");note.className="small";
+  note.textContent="This is the closest matching entry in the knowledge base. It may not answer every detail of your question.";
+  box.append(heading,paragraph,ref,note);chat.appendChild(box);
+  selectedCategory="All";drawCategories();showResults(value);
+ }else{
+  const box=document.createElement("div");box.className="message answer";
+  box.textContent="I couldn't find a matching answer in the knowledge base. Try different words or browse the categories. Deen Guide does not generate new religious rulings.";
+  chat.appendChild(box);showResults();
+ }
+ chat.scrollIntoView({behavior:"smooth",block:"start"});
 }
-
-function askQuestion() {
-  const value = input.value.trim();
-  if (!value) return;
-
-  chat.innerHTML = "";
-
-  const userBox = document.createElement("div");
-  userBox.className = "message user";
-  userBox.textContent = value;
-  chat.appendChild(userBox);
-
-  const words = value.toLowerCase().split(/\s+/).filter(Boolean);
-
-  const ranked = questions.map(item => {
-    const searchable = (item.q+" "+item.keywords+" "+item.a+" "+item.category).toLowerCase();
-    let score = 0;
-    words.forEach(word => {
-      if (word.length > 1 && searchable.includes(word)) score++;
-    });
-    return {item, score};
-  }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
-
-  if (ranked.length) {
-    const best = ranked[0].item;
-    const box = document.createElement("div");
-    box.className = "message answer";
-
-    const heading = document.createElement("h3");
-    heading.textContent = best.q;
-
-    const paragraph = document.createElement("p");
-    paragraph.textContent = best.a;
-
-    const ref = document.createElement("span");
-    ref.className = "reference";
-    ref.textContent = "Reference: " + best.ref;
-
-    const note = document.createElement("p");
-    note.className = "small";
-    note.textContent = "This is the closest matching entry in the current knowledge base. It may not answer every detail of your question.";
-
-    box.append(heading, paragraph, ref, note);
-    chat.appendChild(box);
-
-    selectedCategory = "All";
-    drawCategories();
-    showResults(value);
-  } else {
-    const box = document.createElement("div");
-    box.className = "message answer";
-    box.textContent = "I couldn't find a matching answer in the current knowledge base. Try different words or browse the categories. This app does not generate new religious rulings.";
-    chat.appendChild(box);
-    showResults();
-  }
-
-  chat.scrollIntoView({behavior:"smooth", block:"start"});
-}
-
-input.addEventListener("keydown", event => {
-  if (event.key === "Enter") askQuestion();
-});
-
-drawCategories();
-showResults();
+document.getElementById("askButton").addEventListener("click",askQuestion);
+input.addEventListener("keydown",event=>{if(event.key==="Enter")askQuestion();});
+drawCategories();showResults();
 </script>
 </body>
 </html>
