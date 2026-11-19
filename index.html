@@ -4,96 +4,635 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101b17">
 <title>Deen Guide</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#f5f7f3;color:#20352c;font-family:Arial,sans-serif}
-header{background:#173e32;color:white;padding:28px 20px;text-align:center}
-header h1{margin:0;font-size:30px}
-header p{color:#d6e6dc;margin-bottom:0}
-main{max-width:700px;margin:25px auto;padding:0 16px}
-.search{width:100%;padding:16px;border:1px solid #ccd8cf;border-radius:12px;font-size:16px}
-h2{font-size:20px;margin-top:28px}
-.card{background:white;padding:18px;margin:12px 0;border-radius:14px;border:1px solid #e1e9e2}
-.card h3{margin:0 0 8px;color:#245c46}
-.card p{line-height:1.6;margin:8px 0}
-.ref{font-size:13px;color:#64796d}
-.tag{display:inline-block;background:#e6f1e9;color:#245c46;padding:5px 9px;border-radius:20px;font-size:12px}
-footer{text-align:center;color:#718077;padding:30px 15px;font-size:13px}
-button{background:#245c46;color:white;border:0;padding:10px 14px;border-radius:9px;cursor:pointer}
+:root {
+  --bg:#101b17;
+  --panel:#192821;
+  --panel2:#22352b;
+  --green:#a8d5b5;
+  --text:#f3f5ef;
+  --muted:#b2c1b6;
+  --line:#35483d;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+}
+header {
+  padding:24px 18px 18px;
+  border-bottom:1px solid var(--line);
+}
+.brand {
+  color:var(--green);
+  font-size:13px;
+  letter-spacing:3px;
+  font-weight:bold;
+}
+h1 { margin:8px 0; font-size:30px; }
+header p { color:var(--muted); margin:0; line-height:1.5; }
+main { max-width:850px; margin:auto; padding:18px; }
+.searchbox {
+  display:flex;
+  gap:8px;
+  margin-bottom:14px;
+}
+input {
+  width:100%;
+  min-width:0;
+  padding:15px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:var(--panel);
+  color:white;
+  font-size:16px;
+}
+button {
+  border:0;
+  border-radius:12px;
+  padding:12px 16px;
+  background:var(--green);
+  color:#102017;
+  font-weight:bold;
+  cursor:pointer;
+}
+.categories {
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:4px 0 15px;
+}
+.categories button {
+  white-space:nowrap;
+  background:var(--panel2);
+  color:var(--text);
+}
+.categories button.active {
+  background:var(--green);
+  color:#102017;
+}
+.chat {
+  min-height:260px;
+  display:flex;
+  flex-direction:column;
+  gap:13px;
+}
+.message {
+  padding:15px;
+  border-radius:15px;
+  line-height:1.6;
+  max-width:95%;
+  white-space:pre-wrap;
+}
+.user {
+  align-self:flex-end;
+  background:#355344;
+}
+.answer {
+  align-self:flex-start;
+  background:var(--panel);
+  border:1px solid var(--line);
+}
+.answer h3 { margin:0 0 8px; color:var(--green); }
+.reference {
+  display:block;
+  margin-top:12px;
+  padding-top:10px;
+  border-top:1px solid var(--line);
+  color:var(--green);
+  font-size:13px;
+}
+.results-title {
+  color:var(--muted);
+  font-size:13px;
+  margin:18px 0 10px;
+}
+.card {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:14px;
+  margin-bottom:9px;
+  cursor:pointer;
+}
+.card h3 { margin:0 0 6px; font-size:16px; }
+.card p { color:var(--muted); margin:0; font-size:13px; }
+.card:hover { border-color:var(--green); }
+.small { color:var(--muted); font-size:12px; line-height:1.5; }
+footer {
+  border-top:1px solid var(--line);
+  margin-top:30px;
+  padding:20px 18px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+  text-align:center;
+}
+.hidden { display:none; }
 </style>
 </head>
 <body>
+
 <header>
-<h1>☪ Deen Guide</h1>
-<p>Learn Islam through the Quran and authentic Sunnah.</p>
+  <div class="brand">DEEN GUIDE</div>
+  <h1>Learn about Islam.</h1>
+  <p>Ask a question, explore Islamic topics, and learn from the Quran and authentic Sunnah.</p>
 </header>
 
 <main>
-<h2>Ask about Islam</h2>
-<input class="search" id="search" placeholder="Search halal, haram, prayer..." oninput="searchAnswers()">
+  <div class="searchbox">
+    <input id="question" type="search" placeholder="Ask an Islamic question..." autocomplete="off">
+    <button onclick="askQuestion()">Ask</button>
+  </div>
 
-<div id="answers">
-<h2>Popular topics</h2>
+  <div class="categories" id="categories"></div>
 
-<div class="card" data-words="pork pig swine haram food">
-<span class="tag">Food</span>
-<h3>Is eating pork haram?</h3>
-<p>Yes. The Quran prohibits eating pork, except in a situation of necessity when someone has no other option to survive.</p>
-<p class="ref">Evidence: Quran 2:173 and 5:3.</p>
-</div>
+  <div class="chat" id="chat">
+    <div class="message answer">
+      <h3>Assalamu Alaikum!</h3>
+      Welcome to Deen Guide. Ask a question about Islam or choose a topic below.
+    </div>
+  </div>
 
-<div class="card" data-words="alcohol wine beer drinking haram">
-<span class="tag">Lifestyle</span>
-<h3>Is drinking alcohol haram?</h3>
-<p>Yes. The Quran tells believers to avoid intoxicants.</p>
-<p class="ref">Evidence: Quran 5:90.</p>
-</div>
-
-<div class="card" data-words="prayer salah namaz">
-<span class="tag">Worship</span>
-<h3>Is prayer important in Islam?</h3>
-<p>Yes. Establishing prayer is a central obligation in Islam.</p>
-<p class="ref">Evidence: Quran 2:43.</p>
-</div>
-
-<div class="card" data-words="lying lie honesty">
-<span class="tag">Character</span>
-<h3>Is lying allowed?</h3>
-<p>Islam teaches truthfulness and warns against false speech. Specific situations can have different rulings.</p>
-<p class="ref">Evidence: Quran 9:119.</p>
-</div>
-
-<div class="card" data-words="interest riba bank loan">
-<span class="tag">Money</span>
-<h3>What is riba?</h3>
-<p>Riba refers to prohibited forms of increase or interest in financial dealings. Specific modern financial products need individual scholarly review.</p>
-<p class="ref">Evidence: Quran 2:275.</p>
-</div>
-</div>
-
-<p id="noResults" style="display:none">No matching topic found. This app does not have a verified answer yet.</p>
-
-<div class="card">
-<h3>Important</h3>
-<p>This is an educational starter app, not a qualified fatwa service. Ask a trusted Sunni scholar about personal or disputed rulings. Always check the original evidence and its context.</p>
-</div>
+  <div class="results-title" id="resultsTitle">POPULAR QUESTIONS</div>
+  <div id="results"></div>
 </main>
 
-<footer>Deen Guide · Learn with knowledge and sincerity</footer>
+<footer>
+  Deen Guide is an educational resource based on Sunni Islam.
+  Answers are simplified and are not personal fatwas. Some matters have
+  differences between the four Sunni schools of law. Consult a qualified
+  scholar for personal or complicated questions.
+</footer>
 
 <script>
-function searchAnswers(){
- const q=document.getElementById("search").value.toLowerCase().trim();
- const cards=document.querySelectorAll("#answers .card");
- let shown=0;
- cards.forEach(card=>{
-  const match=(card.innerText+" "+card.dataset.words).toLowerCase().includes(q);
-  card.style.display=match?"block":"none";
-  if(match) shown++;
- });
- document.getElementById("noResults").style.display=shown?"none":"block";
+const questions = [
+{
+category:"Belief",
+q:"What are the six pillars of Iman?",
+keywords:"faith belief iman angels books messengers day judgment destiny",
+a:"The six pillars of Iman are belief in Allah, His angels, His revealed books, His messengers, the Last Day, and divine decree, both its good and what may seem bad to us.",
+ref:"Sahih Muslim 8a, Hadith of Jibril."
+},
+{
+category:"Belief",
+q:"What is Tawheed?",
+keywords:"oneness monotheism worship Allah",
+a:"Tawheed means believing that Allah is One, with no partner. Muslims worship Allah alone and do not associate partners with Him.",
+ref:"Quran 112:1-4, Quran 2:163."
+},
+{
+category:"Belief",
+q:"Who is Allah?",
+keywords:"God creator lord",
+a:"Allah is the one true God, the Creator and Sustainer of everything. He has no partner, child, or equal.",
+ref:"Quran 2:255, Quran 112:1-4."
+},
+{
+category:"Belief",
+q:"What is Shirk?",
+keywords:"partners idolatry worship",
+a:"Shirk means associating partners with Allah in what belongs exclusively to Him, such as worship. The Quran strongly warns against it.",
+ref:"Quran 4:48, Quran 31:13."
+},
+{
+category:"Belief",
+q:"Who was Prophet Muhammad?",
+keywords:"messenger prophet last final",
+a:"Prophet Muhammad, peace be upon him, was Allah's messenger and the final prophet. Muslims follow the guidance he brought.",
+ref:"Quran 33:40, Quran 21:107."
+},
+{
+category:"Belief",
+q:"What is the Quran?",
+keywords:"holy book revelation scripture",
+a:"The Quran is the revelation from Allah to Prophet Muhammad through Angel Jibril. Muslims regard it as their primary source of guidance.",
+ref:"Quran 2:2, Quran 17:9."
+},
+{
+category:"Belief",
+q:"What is the Sunnah?",
+keywords:"hadith teachings prophet example",
+a:"The Sunnah refers to the teachings, actions, approvals, and example of Prophet Muhammad. Hadith reports help preserve knowledge of the Sunnah.",
+ref:"Quran 33:21, Quran 59:7."
+},
+{
+category:"Prayer",
+q:"How many daily prayers are obligatory?",
+keywords:"salah salat five prayers",
+a:"There are five obligatory daily prayers: Fajr, Dhuhr, Asr, Maghrib, and Isha.",
+ref:"Quran 17:78, Sahih al-Bukhari 528."
+},
+{
+category:"Prayer",
+q:"How many rakahs are in Fajr?",
+keywords:"morning prayer units",
+a:"The obligatory Fajr prayer consists of two rakahs. There are also two Sunnah rakahs before the obligatory prayer.",
+ref:"Sahih al-Bukhari 1180, Sahih Muslim 725."
+},
+{
+category:"Prayer",
+q:"What happens if I miss Fajr?",
+keywords:"oversleep forget missed salah make up qada",
+a:"If you sleep through Fajr or genuinely forget it, pray it when you remember or wake up. Do not deliberately delay an obligatory prayer.",
+ref:"Sahih al-Bukhari 597, Sahih Muslim 684."
+},
+{
+category:"Prayer",
+q:"What is Wudu?",
+keywords:"ablution washing purification before prayer",
+a:"Wudu is the purification performed before prayer. The Quran describes washing the face and arms, wiping the head, and washing the feet.",
+ref:"Quran 5:6."
+},
+{
+category:"Prayer",
+q:"What breaks Wudu?",
+keywords:"toilet passing wind sleep invalidation",
+a:"Using the toilet and passing wind invalidate Wudu. Other situations have detailed rulings and some differences between Sunni schools. Deep sleep is also discussed in the Hadith and fiqh.",
+ref:"Quran 5:6, Sahih Muslim 362."
+},
+{
+category:"Prayer",
+q:"Can I pray without knowing Arabic?",
+keywords:"language beginner salah recitation",
+a:"Muslims learn the required Quranic recitation for prayer. If you are a beginner, learn step by step and ask a qualified teacher what to do while learning.",
+ref:"Quran 73:20."
+},
+{
+category:"Prayer",
+q:"What direction do Muslims pray?",
+keywords:"qibla kaaba direction",
+a:"Muslims face the Kaaba in Makkah when performing obligatory prayer, according to their ability.",
+ref:"Quran 2:144."
+},
+{
+category:"Fasting",
+q:"What is Ramadan?",
+keywords:"month fasting ramadan",
+a:"Ramadan is the ninth month of the Islamic lunar calendar. Muslims who are obligated to fast abstain from food, drink, and other things that invalidate the fast from dawn until sunset.",
+ref:"Quran 2:183-185."
+},
+{
+category:"Fasting",
+q:"Who must fast Ramadan?",
+keywords:"obligation fasting adults health",
+a:"Fasting Ramadan is obligatory for eligible Muslims. Islamic law recognises exemptions, including illness and travel, with further details depending on the situation.",
+ref:"Quran 2:183-185."
+},
+{
+category:"Fasting",
+q:"Can I eat before Fajr?",
+keywords:"suhoor pre dawn meal",
+a:"Yes. Muslims may eat and drink before true dawn. The pre-dawn meal is called suhoor.",
+ref:"Quran 2:187, Sahih al-Bukhari 1923."
+},
+{
+category:"Fasting",
+q:"What is Iftar?",
+keywords:"break fast sunset meal",
+a:"Iftar is the meal used to break the fast at sunset. Muslims should not intentionally delay breaking the fast after sunset.",
+ref:"Sahih al-Bukhari 1957, Sahih Muslim 1098."
+},
+{
+category:"Fasting",
+q:"Can I fast while travelling?",
+keywords:"journey travel exemption",
+a:"The Quran allows a traveller to postpone fasting and make up the missed days later. The details of what counts as travel and the best choice in a particular situation can require scholarly guidance.",
+ref:"Quran 2:185."
+},
+{
+category:"Food",
+q:"What foods are Haram?",
+keywords:"forbidden food pork blood carrion alcohol",
+a:"The Quran specifically prohibits carrion, blood, pork, and animals dedicated to other than Allah, with further details and exceptions explained in Islamic law.",
+ref:"Quran 2:173, Quran 5:3."
+},
+{
+category:"Food",
+q:"Is pork Haram?",
+keywords:"pig bacon ham pork meat",
+a:"Yes. Pork is prohibited for Muslims.",
+ref:"Quran 2:173, Quran 5:3."
+},
+{
+category:"Food",
+q:"Is alcohol Haram?",
+keywords:"wine beer intoxicants drinking",
+a:"Intoxicants are prohibited in Islam. Muslims are instructed to avoid them.",
+ref:"Quran 5:90-91, Sahih Muslim 2003."
+},
+{
+category:"Food",
+q:"What does Halal mean?",
+keywords:"permissible allowed lawful",
+a:"Halal means permitted or lawful under Islamic teachings. Food must meet the relevant Islamic requirements to be considered halal.",
+ref:"Quran 2:168, Quran 5:88."
+},
+{
+category:"Money",
+q:"What is Riba?",
+keywords:"interest usury loans banking",
+a:"Riba is prohibited in Islam. Its application to modern financial products can involve detailed scholarly discussion, so ask a qualified scholar about a specific product.",
+ref:"Quran 2:275-279."
+},
+{
+category:"Money",
+q:"What is Zakat?",
+keywords:"charity wealth obligatory giving",
+a:"Zakat is an obligatory form of charity for Muslims who meet its conditions. Its calculation depends on the type of wealth and applicable rules.",
+ref:"Quran 9:60, Quran 2:43."
+},
+{
+category:"Money",
+q:"What is Sadaqah?",
+keywords:"voluntary charity donation helping",
+a:"Sadaqah is voluntary charity. It can include giving money, helping someone, and other acts of kindness.",
+ref:"Quran 2:261, Sahih Muslim 1009."
+},
+{
+category:"Character",
+q:"Why is honesty important in Islam?",
+keywords:"truth lying truthful",
+a:"Islam teaches Muslims to speak truthfully and avoid lying. Honesty is an important part of good character.",
+ref:"Quran 9:119, Sahih al-Bukhari 6094."
+},
+{
+category:"Character",
+q:"What is backbiting?",
+keywords:"gheebah gossip talking behind someone",
+a:"Backbiting means mentioning something about another person that they would dislike, even if it is true. Islam warns strongly against it.",
+ref:"Quran 49:12, Sahih Muslim 2589."
+},
+{
+category:"Character",
+q:"How should Muslims treat their parents?",
+keywords:"mother father respect kindness family",
+a:"The Quran commands kindness towards parents and teaches Muslims to speak to them respectfully.",
+ref:"Quran 17:23-24, Quran 31:14."
+},
+{
+category:"Character",
+q:"Is forgiveness encouraged in Islam?",
+keywords:"forgive pardon anger",
+a:"Yes. The Quran praises those who control their anger and forgive others. Forgiveness does not mean accepting ongoing harm.",
+ref:"Quran 3:134, Quran 42:40."
+},
+{
+category:"Everyday",
+q:"What should I say before eating?",
+keywords:"dua bismillah food meal",
+a:"A Muslim should mention Allah's name before eating by saying Bismillah. If they forget, a reported supplication is to mention Allah's name when they remember.",
+ref:"Sahih al-Bukhari 5376, Sunan Abi Dawud 3767."
+},
+{
+category:"Everyday",
+q:"What should I say when greeting another Muslim?",
+keywords:"salam greeting assalamu alaikum",
+a:"A common Islamic greeting is Assalamu Alaikum, meaning peace be upon you. The reply is Wa Alaikum Assalam, meaning and upon you be peace.",
+ref:"Quran 4:86."
+},
+{
+category:"Everyday",
+q:"What is Dua?",
+keywords:"supplication asking Allah prayer",
+a:"Dua is calling upon Allah and asking Him for help, guidance, forgiveness, or blessings. Muslims can make dua in their own language.",
+ref:"Quran 2:186, Quran 40:60."
+},
+{
+category:"Everyday",
+q:"What is Dhikr?",
+keywords:"remembrance remembering Allah tasbih",
+a:"Dhikr means remembering Allah through words and acts of worship, such as saying SubhanAllah, Alhamdulillah, and Allahu Akbar.",
+ref:"Quran 13:28, Quran 33:41."
+},
+{
+category:"Family",
+q:"What does Islam teach about marriage?",
+keywords:"nikah husband wife spouse",
+a:"Marriage in Islam is a serious commitment built on kindness, responsibility, and mutual rights. Specific rulings depend on the circumstances.",
+ref:"Quran 30:21, Quran 4:19."
+},
+{
+category:"Family",
+q:"What does Islam teach about kindness to neighbours?",
+keywords:"neighbor neighbour community",
+a:"The Quran commands good treatment of neighbours, relatives, orphans, and others. Good manners towards neighbours are an important Islamic teaching.",
+ref:"Quran 4:36, Sahih al-Bukhari 6018."
+},
+{
+category:"Quran",
+q:"Which is the first chapter of the Quran?",
+keywords:"surah opening al fatihah",
+a:"The first chapter of the Quran is Surah Al-Fatihah. It has seven verses and is recited in every rakah of the prayer.",
+ref:"Quran 1:1-7, Sahih al-Bukhari 756."
+},
+{
+category:"Quran",
+q:"Which is the longest chapter of the Quran?",
+keywords:"surah longest baqarah",
+a:"Surah Al-Baqarah is the longest chapter of the Quran. It is chapter 2.",
+ref:"Quran, Surah 2."
+},
+{
+category:"Quran",
+q:"What is Ayat al-Kursi?",
+keywords:"throne verse 255 baqarah",
+a:"Ayat al-Kursi is verse 255 of Surah Al-Baqarah. It describes Allah's greatness, knowledge, and power.",
+ref:"Quran 2:255."
+},
+{
+category:"Quran",
+q:"What is Laylat al-Qadr?",
+keywords:"night power decree ramadan",
+a:"Laylat al-Qadr is the Night of Decree. The Quran says it is better than a thousand months.",
+ref:"Quran 97:1-5."
+},
+{
+category:"Quran",
+q:"Why was the Quran revealed?",
+keywords:"purpose guidance revelation",
+a:"The Quran was revealed as guidance for humanity. It calls people to worship Allah and live according to His guidance.",
+ref:"Quran 2:2, Quran 17:9."
+},
+{
+category:"Belief",
+q:"What is the Day of Judgment?",
+keywords:"afterlife resurrection akhirah",
+a:"Muslims believe that people will be resurrected and held accountable by Allah for their deeds. Allah is perfectly just.",
+ref:"Quran 99:6-8, Quran 101:6-11."
+},
+{
+category:"Prayer",
+q:"What is Friday prayer?",
+keywords:"jumuah jummah friday salah",
+a:"Jumu'ah is the congregational Friday prayer. The Quran instructs believers to respond to the call for prayer and leave trade during it.",
+ref:"Quran 62:9-10."
+},
+{
+category:"Fasting",
+q:"What is the Day of Arafah?",
+keywords:"arafah dhul hijjah fasting",
+a:"The Day of Arafah is the ninth day of Dhul-Hijjah. Fasting it is highly recommended for Muslims who are not performing Hajj, according to the Sunnah.",
+ref:"Sahih Muslim 1162."
+},
+{
+category:"Money",
+q:"Is cheating in business allowed?",
+keywords:"fraud dishonesty trade selling",
+a:"No. Islam prohibits cheating and dishonesty in trade. Sellers should be truthful about what they sell.",
+ref:"Sahih Muslim 102, Sahih al-Bukhari 2079."
+},
+{
+category:"Character",
+q:"What is patience in Islam?",
+keywords:"sabr hardship difficulty",
+a:"Sabr means patience and steadfastness. The Quran teaches believers to seek help through patience and prayer.",
+ref:"Quran 2:153, Quran 39:10."
 }
+];
+
+const categories = ["All", ...new Set(questions.map(x=>x.category))];
+let selectedCategory = "All";
+
+const categoryBox = document.getElementById("categories");
+const results = document.getElementById("results");
+const chat = document.getElementById("chat");
+const input = document.getElementById("question");
+
+function drawCategories() {
+  categoryBox.innerHTML = "";
+  categories.forEach(cat => {
+    const btn = document.createElement("button");
+    btn.textContent = cat;
+    btn.className = selectedCategory === cat ? "active" : "";
+    btn.onclick = () => {
+      selectedCategory = cat;
+      drawCategories();
+      showResults();
+    };
+    categoryBox.appendChild(btn);
+  });
+}
+
+function showResults(query="") {
+  const words = query.toLowerCase().trim().split(/\s+/).filter(Boolean);
+
+  let matches = questions.filter(item => {
+    const categoryMatch = selectedCategory === "All" || item.category === selectedCategory;
+    const searchable = (item.q+" "+item.keywords+" "+item.a+" "+item.category).toLowerCase();
+    const searchMatch = words.length === 0 || words.some(word => searchable.includes(word));
+    return categoryMatch && searchMatch;
+  });
+
+  results.innerHTML = "";
+  document.getElementById("resultsTitle").textContent =
+    matches.length + " QUESTIONS";
+
+  matches.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "card";
+    const title = document.createElement("h3");
+    title.textContent = item.q;
+    const desc = document.createElement("p");
+    desc.textContent = item.category;
+    card.append(title, desc);
+    card.onclick = () => showAnswer(item);
+    results.appendChild(card);
+  });
+
+  if (!matches.length) {
+    results.textContent = "No matching questions found. Try different words or another category.";
+  }
+}
+
+function showAnswer(item) {
+  chat.innerHTML = "";
+  const box = document.createElement("div");
+  box.className = "message answer";
+
+  const heading = document.createElement("h3");
+  heading.textContent = item.q;
+
+  const paragraph = document.createElement("p");
+  paragraph.textContent = item.a;
+
+  const ref = document.createElement("span");
+  ref.className = "reference";
+  ref.textContent = "Reference: " + item.ref;
+
+  box.append(heading, paragraph, ref);
+  chat.appendChild(box);
+  chat.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function askQuestion() {
+  const value = input.value.trim();
+  if (!value) return;
+
+  chat.innerHTML = "";
+
+  const userBox = document.createElement("div");
+  userBox.className = "message user";
+  userBox.textContent = value;
+  chat.appendChild(userBox);
+
+  const words = value.toLowerCase().split(/\s+/).filter(Boolean);
+
+  const ranked = questions.map(item => {
+    const searchable = (item.q+" "+item.keywords+" "+item.a+" "+item.category).toLowerCase();
+    let score = 0;
+    words.forEach(word => {
+      if (word.length > 1 && searchable.includes(word)) score++;
+    });
+    return {item, score};
+  }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
+
+  if (ranked.length) {
+    const best = ranked[0].item;
+    const box = document.createElement("div");
+    box.className = "message answer";
+
+    const heading = document.createElement("h3");
+    heading.textContent = best.q;
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = best.a;
+
+    const ref = document.createElement("span");
+    ref.className = "reference";
+    ref.textContent = "Reference: " + best.ref;
+
+    const note = document.createElement("p");
+    note.className = "small";
+    note.textContent = "This is the closest matching entry in the current knowledge base. It may not answer every detail of your question.";
+
+    box.append(heading, paragraph, ref, note);
+    chat.appendChild(box);
+
+    selectedCategory = "All";
+    drawCategories();
+    showResults(value);
+  } else {
+    const box = document.createElement("div");
+    box.className = "message answer";
+    box.textContent = "I couldn't find a matching answer in the current knowledge base. Try different words or browse the categories. This app does not generate new religious rulings.";
+    chat.appendChild(box);
+    showResults();
+  }
+
+  chat.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+input.addEventListener("keydown", event => {
+  if (event.key === "Enter") askQuestion();
+});
+
+drawCategories();
+showResults();
 </script>
 </body>
 </html>
